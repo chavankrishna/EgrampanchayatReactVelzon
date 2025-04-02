@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Table Layout</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            table-layout: fixed;
+            margin-top: -20px;
+        }
+        th, td {
+            border: 1px solid black;
+            text-align: center;
+            vertical-align: middle;
+            padding: 10px;
+            word-wrap: break-word;
+        }
+        th {
+            background-color: #f9f9f9;
+            font-weight: bold;
+        }
+        .vertical-text {
+            writing-mode: vertical-rl;
+            transform: rotate(180deg);
+        }
+        .header-container {
+            border: 1px solid black;
+            padding: 10px;
+            margin-bottom: 20px;
+        }
+        .header-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .header-row div {
+            flex: 1;
+            text-align: center;
+        }
+        .header-row .left {
+            text-align: left;
+        }
+        .header-row .right {
+            text-align: right;
+        }
+        .header-row span {
+            display: inline-block;
+            min-width: 100px;
+            border-bottom: 1px dotted black;
+        }
+        h1 {
+            text-align: center;
+            margin: 10px 0;
+            font-size: 18px;
+        }
+        .center-section {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 30px; /* Adjust the gap between items as needed */
+            margin-top: 10px;
+        }
+        .center-section div {
+            text-align: center;
+        }
+        .center-section span {
+            display: inline-block;
+            min-width: 150px; /* Width of underline */
+            border-bottom: 1px dotted black;
+        }
+    </style>
+    
+</head>
+<body>
+    <div class="header-container">
+        <div class="header-row">
+            <div class="left">महाराष्ट्र ग्रामपंचायत लेखा प्रणाली - २०११</div>
+            
+            <!-- <div class="right">नमुना क्र. २६ (ख)</div> -->
+        </div>
+        <h1>गुंतवणूक नोंदवही </h1>
+         <div class="left" style="margin-top: -38px;">नमुना नं . २५</div>
+        <div class="header-row">
+            <div class="left">नियम १६(१) व (२) आणि २२(१) पहा </span></div>
+            <!-- <div>या वर्षाचे</div> -->
+        </div>
+        <!-- Center-aligned section -->
+        <div class="center-section">
+            <div>ग्रामपंचायत <span></span></div>
+            <div>तालुका <span></span></div>
+            <div>जिल्हा <span></span></div>
+        </div>
+    </div>
+    <table>
+        <thead>
+            <tr>
+                <th rowspan="2">अ. क्र.</th>
+                <th rowspan="2">गुंतवणुकीची तारीख</th>
+                <th rowspan="2">गुंतवणुकीची तपशील (बँकेत मुदत ठेव /राष्ट्रीय बचत प्रमाणपत्र /सरकारी रोखे सरकारी व इतर क्रमांक व तारीख )</th>
+              
+              
+                <th colspan="2">गुंतवणुकीची रक्कम</th>
+                <th rowspan="2">परिणत होण्याची तारीख </th>
+              
+                <th rowspan="2">निव्वल देय रक्कम </th>
+                <th rowspan="2">उपार्जित व्याजाची तारीख </th>
+                <th rowspan="2">सचिवांची सही</th>
+                <th rowspan="2">सरपंचाची सही</th>
+                <th rowspan="2">बदलीचा पदोन्नतीचा दिनांक </th>
+                <th rowspan="2">दैनिक रोकड वहीतील जमा रक्कम </th>
+                <th rowspan="2">प्रक्रांतीचा तपशील  </th> 
+                <th rowspan="2">सचिवांची सही </th> 
+                <th rowspan="2">सरपंचाची सही</th> 
+
+
+            </tr>
+            <tr>
+                <th>दर्शनी मूल्य</th>
+                <th>खरेदी किंमत </th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Example empty rows to match the style -->
+            <tr>
+                <td>1</td>
+                <td>2</td>
+                <td>3</td>
+                <td>4</td>
+                <td>5</td>
+                <td>6</td>
+                <td>7</td>
+                <td>8</td>
+                <td>9</td>
+                <td>10</td>
+                <td>11</td>
+                <td>12</td>
+                <td>13</td>
+                <td>14</td>
+                <td>15</td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>

@@ -1,0 +1,132 @@
+ /* styles.css */
+
+.button-container {
+    margin-top: 3%;
+    gap: 10px;
+}
+
+/* Custom styles for DataTables search input */
+.dataTables_filter input {
+    margin-top: -5% !important;
+    width: 30% !important;
+    margin-left: 70% !important;
+}
+
+
+
+/* print */
+@media print {
+    #print-button {
+        display: none;
+    }
+
+    body {
+        background-color: white;
+        /* Ensure a clean white background for printing */
+    }
+}
+@media print {
+    #print-button {
+        display: none;
+        /* Hides the print button in the printed output */
+        display: flex;
+        align-items: end;
+    }
+}
+
+.print {
+    body {
+        display: block;
+    }
+
+    header,
+    footer,
+    .breadcrumb,
+    .page-title,
+    .btn {
+        display: none !important;
+    }
+
+}
+
+.vertical-text {
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+}
+
+.header-container {
+    border: 1px solid black;
+    padding: 10px;
+    margin-bottom: 20px;
+}
+
+.header-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header-row div {
+    flex: 1;
+    text-align: center;
+}
+
+.header-row .left {
+    text-align: left;
+}
+
+.header-row .right {
+    text-align: right;
+}
+
+.header-row span {
+    display: inline-block;
+    min-width: 100px;
+    border-bottom: 1px dotted black;
+}
+
+h1 {
+    text-align: center;
+    margin: 10px 0;
+    font-size: 18px;
+}
+
+.center-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    /* Adjust the gap between items as needed */
+    margin-top: 10px;
+}
+
+.center-section div {
+    text-align: center;
+}
+
+.center-section span {
+    display: inline-block;
+    min-width: 150px;
+    /* Width of underline */
+    border-bottom: 1px dotted black;
+}
+
+/*.pagination {
+    margin-left: 61% !important;
+}
+*/
+
+.pagination {
+    display: flex !important;
+    justify-content: flex-end !important;
+    align-items: center !important;
+    gap: 10px; /* Adjust spacing if needed */
+    margin: 20px auto !important; /* Center the pagination */
+} 
+
+ 
+.page-title-box h4,
+.page-title-box .h4 {
+    display: none !important;
+}
+

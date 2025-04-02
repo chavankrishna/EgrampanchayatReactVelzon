@@ -1,0 +1,18 @@
+.custom-table th,
+.custom-table td {
+    white-space: nowrap;
+    font-size: 0.85em;
+    padding: 8px;
+}
+
+.custom-table {
+    width: 100%;
+    overflow-x: auto;
+}
+
+.custom-table thead th {
+    position: sticky;
+    top: 0;
+    background: #f8f9fa;
+}
+

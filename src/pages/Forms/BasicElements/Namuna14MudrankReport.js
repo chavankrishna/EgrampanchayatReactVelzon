@@ -322,7 +322,7 @@ const Namuna14MudrankReport = () => {
                           </tr>
                         </thead>
                         <tbody>
-                          {dataList.map((data, index) => (
+                          {dataList.map((data, index) => ( 
                             <tr key={data.id}>
                               <td>{data.id}</td>    
                               <td>
@@ -365,7 +365,7 @@ const Namuna14MudrankReport = () => {
                                         return `${day}-${month}-${year}`;
                                     })()
                                     : ''}
-                                </td>
+                              </td>
 
                               <td>{data.vMChitkavalyachiKimmat}</td>
                               <td>{data.dainikShillak}</td> 

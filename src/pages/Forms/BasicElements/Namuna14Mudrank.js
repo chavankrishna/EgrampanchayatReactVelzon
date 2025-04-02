@@ -192,12 +192,12 @@ const Namuna14Mudrank = () => {
                   <div className="m-4 alert alert-success" role="alert"> 
                     {successMessage}
                   </div>
-                )}
-                  <div className="live-preview"> 
-                    <Row className="gy-4">
+                )}                                                
+                  <div className="live-preview">                  
+                    <Row className="gy-4">           
                      
-                      <Col xxl={3} md={3}>
-                        <div>
+                      <Col xxl={3} md={3}> 
+                        <div>    
                           <Label htmlFor="mMPramanakKramank" className="form-label">
                             मिळालेले मुद्रांक प्रमाणक क्रमांक  
                           </Label>
@@ -242,12 +242,12 @@ const Namuna14Mudrank = () => {
                         </div>
                       </Col>
 
-                      <Col xxl={3} md={3}>
-                        <div>
+                      <Col xxl={3} md={3}>    
+                        <div>   
                           <Label htmlFor="vMPavatiDinank" className="form-label">
                             वापरलेले मुद्रांक पावती दिनांक {" "}   
                           </Label>
-                          <Input
+                          <Input 
                                 type="date"
                                 id="vMPavatiDinank"
                                 className="form-control"

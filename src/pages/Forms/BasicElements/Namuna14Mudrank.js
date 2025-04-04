@@ -18,10 +18,10 @@ const Namuna14Mudrank = () => {
   const navigate = useNavigate();                                    
 
   const [formData, setFormData] = useState({          
-   // gramPanchayatName: "",
-   // gramPanchayatId: "",
-   // employeeName: "",
-   // employeeId: "",
+   gramPanchayatName: "",
+   gramPanchayatId: "",
+   employeeName: "",
+   employeeId: "",
    // updateDate: "",
    // createdDate: "",
     mMPramanakKramank: "",     

@@ -54,6 +54,8 @@ const Namuna14MudrankReport = () => {
     fetchData();
   }, []);
 
+
+  
   // Initialize DataTable
   useEffect(() => {
     if (tableRef.current && !$.fn.dataTable.isDataTable("#buttons-datatables")) {
@@ -157,8 +159,8 @@ const Namuna14MudrankReport = () => {
                                     <div class="header-row">
                                         <div class="left">महाराष्ट्र ग्रामपंचायत लेखा प्रणाली - २०११</div>
                                     </div>
-                                    <h1>गुंतवणूक नोंदवही</h1>
-                                    <div class="left" style="margin-top: -38px;">नमुना नं . २५</div>
+                                    <h1>मुद्रांक हिशोब नोंदवही</h1>
+                                    <div class="left" style="margin-top: -38px;">नमुना नं . १४</div>
                                     <div class="header-row">
                                         <div class="left">नियम १६(१) व (२) आणि २२(१) पहा</div>
                                     </div>
@@ -186,6 +188,8 @@ const Namuna14MudrankReport = () => {
       });
     }
   }, [dataList]);   
+
+
 
   // Handle Delete Record     
   const handleDelete = async (id) => {   

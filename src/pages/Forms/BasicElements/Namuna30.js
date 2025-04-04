@@ -51,6 +51,10 @@ const Namuna30 = () => {
   const [errorMessage, setErrorMessage] = useState("");
   const [sessionMessage, setSessionMessage] = useState("");
   const [yearRanges, setYearRanges] = useState([]);
+  const [error, setError] = useState("");
+  const [error1, setError1] = useState("");
+  const [error2, setError2] = useState("");
+  const [error3, setError3] = useState("");   
   // console.log(report);
   const [dataList, setDataList] = useState([]);
 
@@ -70,29 +74,77 @@ const Namuna30 = () => {
     const ranges = Array.from({ length: 100 }, (_, i) => {
       const startYear = currentYear - i;
       const endYear = startYear + 1;
-      const startYearInMarathi = arabicToMarathiDigits(startYear);
-      const endYearInMarathi = arabicToMarathiDigits(endYear);
-      return `${startYearInMarathi} - ${endYearInMarathi}`;
+     // const startYearInMarathi = arabicToMarathiDigits(startYear);
+     // const endYearInMarathi = arabicToMarathiDigits(endYear);
+      return `${startYear} - ${endYear}`;   
     });
     setYearRanges(ranges);
   }, []);
 
+  // const handleInputChange = (e) => {
+  //   const { id, value } = e.target;
+  //   // Check if the field is the date field and convert the date format
+  //   setFormData({ ...formData, [id]: value });
+  // };
+
+
   const handleInputChange = (e) => {
     const { id, value } = e.target;
-    // Check if the field is the date field and convert the date format
-    setFormData({ ...formData, [id]: value });
+    const regex = /^[\u0900-\u097F A-Za-z\s]+$/; // Allows Hindi, Marathi & English
+
+    setFormData((prev) => ({ ...prev, [id]: value }));
+
+    if (id === "shera" ) {
+      if (value === "" || regex.test(value)) { 
+        setError(""); // Clear error if valid  
+      } else {
+        setError("Only English, Marathi, and Hindi characters are allowed. Numbers and special characters are not allowed"); 
+      }
+    } 
+    else if (id === "sAVVKramankNiyambahya" ) { 
+      if (value === "" || regex.test(value)) {
+       // setFormData((prev) => ({ ...prev, [id]: value }));
+        setError1(""); // Clear error if valid
+      } else {
+        setError1("Only English, Marathi, and Hindi characters are allowed. Numbers and special characters are not allowed"); 
+      }
+    }
+    else if (id === "sAVVKramankMulyankan" ) { 
+      if (value === "" || regex.test(value)) {
+       // setFormData((prev) => ({ ...prev, [id]: value }));
+        setError2(""); // Clear error if valid
+      } else {
+        setError2("Only English, Marathi, and Hindi characters are allowed. Numbers and special characters are not allowed"); 
+      }
+    }
+    else if (id === "sAVVKramankPustakiSamayojan") { 
+      if (value === "" || regex.test(value)) {
+       // setFormData((prev) => ({ ...prev, [id]: value }));
+        setError3(""); // Clear error if valid
+      } else {
+        setError3("Only English, Marathi, and Hindi characters are allowed. Numbers and special characters are not allowed"); 
+      }
+    }
+
+
+
   };
 
   // Convert date format from dd/mm/yyyy to yyyy-mm-dd
   const convertDateFormat = (date) => {
+    if (!date) return ""; // Handle empty or invalid inputs
     const dateObj = new Date(date);
-    return dateObj.toISOString().split("T")[0]; // format as yyyy-mm-dd
+    if (isNaN(dateObj)) return ""; // Handle invalid dates
+    return dateObj.toISOString().slice(0, 10); // Extract YYYY-MM-DD
   };
+  
 
-  function arabicToMarathiDigits(input) {
+  function arabicToMarathiDigits(input) { 
     const marathiDigits = ["०", "१", "२", "३", "४", "५", "६", "७", "८", "९"];
     return input.toString().replace(/[0-9]/g, (digit) => marathiDigits[digit]);
   }
+
+
   const handleSubmit = async () => {
     try {
       // Convert date fields
@@ -320,23 +372,30 @@ const Namuna30 = () => {
   //   handleSubmit1();
   //   handleReset();
   // };
-const breadcrumbTitle = "नमुना ३० ग्रामपंचायत लेखा परीक्षण आक्षेप पूर्तता नोंदवही"; // This could be dynamic
+const breadcrumbTitle = "ग्रामपंचायत लेखा परीक्षण आक्षेप पूर्तता नोंदवही"; // This could be dynamic
 const breadcrumbPageTitle = "डॅशबोर्ड / अहवाल-३० "; // Dynamic page title
 
 const breadcrumbPaths = [
-  "/dashboard", // Path for "डॅशबोर्ड"
+  "/dashboard", // Path for "डॅशबोर्ड" 
   "/नमुना-३०-अहवाल", // Path
 ];
   return (
     <React.Fragment>
       <style>
-        {`
+                {`
+                .page-title-right {
+                    display: flex;
+                    justify-content: flex-end;
+                    width: 100%;
+                }
+
+                @media (max-width: 768px) {
                     .page-title-right {
-                        margin-left: 62%;
+                    justify-content: center; /* Center align on smaller screens */
                     }
+                }
                 `}
-                
-      </style>
+        </style> 
       <UiContent />
       <div className="page-content">
         <Container fluid>
@@ -388,11 +447,11 @@ const breadcrumbPaths = [
                           </Label>
                           <Input type="number" className="form-control" id="ahwalatilAkshepanchiAnuKramank" value={formData.ahwalatilAkshepanchiAnuKramank} onChange={handleInputChange} />
                         </div>
-                      </Col>
-                      <Col xxl={3} md={3}>
+                      </Col>               
+                      <Col xxl={3} md={3}>    
                         <div>
-                          <Label htmlFor="kMAsanaraAkshepKramank" className="form-label">
-                            केवळ माहितीसाठी असणारा आक्षेप क्रमांक
+                          <Label htmlFor="kMAsanaraAkshepKramank" className="form-label">  
+                            केवळ माहितीसाठी असणारा आक्षेप क्रमांक   
                           </Label>
                           <Input type="number" className="form-control" id="kMAsanaraAkshepKramank" value={formData.kMAsanaraAkshepKramank} onChange={handleInputChange} />
                         </div>
@@ -510,12 +569,13 @@ const breadcrumbPaths = [
                           <Label htmlFor="sAVVKramankPustakiSamayojan" className="form-label">
                             शिल्लक आक्षेपांची वर्गवारी व क्रमांक पुस्तकी समायोजन
                           </Label>
-                          <Input type="text" className="form-control" id="sAVVKramankPustakiSamayojan" value={formData.sAVVKramankPustakiSamayojan} onChange={handleInputChange} />
+                          <Input type="text" className="form-control" id="sAVVKramankPustakiSamayojan" value={formData.sAVVKramankPustakiSamayojan} onChange={handleInputChange} />   
+                          {error3 && <small style={{ color: "red" }}>{error3}</small>} 
                         </div>
                       </Col>
-                      <Col xxl={3} md={3}>
+                      <Col xxl={3} md={3}> 
                         <div>
-                          <Label htmlFor="sAVVKramankVasuli" className="form-label">
+                          <Label htmlFor="sAVVKramankVasuli" className="form-label"> 
                             शिल्लक आक्षेपांची वर्गवारी व क्रमांक वसुली
                           </Label>
                           <Input type="number" className="form-control" id="sAVVKramankVasuli" value={formData.sAVVKramankVasuli} onChange={handleInputChange} />
@@ -526,17 +586,21 @@ const breadcrumbPaths = [
                           <Label htmlFor="sAVVKramankMulyankan" className="form-label">
                             शिल्लक आक्षेपांची वर्गवारी व क्रमांक मूल्यांकन
                           </Label>
-                          <Input type="text" className="form-control" id="sAVVKramankMulyankan" value={formData.sAVVKramankMulyankan} onChange={handleInputChange} />
+                          <Input type="text" className="form-control" id="sAVVKramankMulyankan" value={formData.sAVVKramankMulyankan} onChange={handleInputChange} /> 
+                          {error2 && <small style={{ color: "red" }}>{error2}</small>} 
                         </div>
                       </Col>
+
                       <Col xxl={3} md={3}>
                         <div>
                           <Label htmlFor="sAVVKramankNiyambahya" className="form-label">
                             शिल्लक आक्षेपांची वर्गवारी व क्रमांक नियमबाह्य
                           </Label>
-                          <Input type="text" className="form-control" id="sAVVKramankNiyambahya" value={formData.sAVVKramankNiyambahya} onChange={handleInputChange} />
+                          <Input type="text" className="form-control" id="sAVVKramankNiyambahya" value={formData.sAVVKramankNiyambahya} onChange={handleInputChange} /> 
+                          {error1 && <small style={{ color: "red" }}>{error1}</small>}
                         </div>
                       </Col>
+
                       <Col xxl={3} md={3}>
                         <div>
                           <Label htmlFor="sAVVKramankEkun" className="form-label">
@@ -546,12 +610,21 @@ const breadcrumbPaths = [
                         </div>
                       </Col>
 
+
                       <Col xxl={3} md={3}>
                         <div>
                           <Label htmlFor="shera" className="form-label">
                             शेरा
                           </Label>
-                          <textarea className="form-control" id="shera" value={formData.shera} onChange={handleInputChange} rows="4" />
+                          <textarea 
+                            className="form-control" 
+                            id="shera" 
+                            value={formData.shera} 
+                            onChange={handleInputChange} 
+                            rows="4" 
+
+                          />
+                          {error && <small style={{ color: "red" }}>{error}</small>}
                         </div>
                       </Col>
 
@@ -564,7 +637,7 @@ const breadcrumbPaths = [
                     </Row>
                   </div>
                   <div className="col-lg-12" style={{ marginTop: "20px" }}>
-                    <div className="text-start">
+                    <div className="d-flex justify-content-end flex-wrap gap-2">
                       <Button color="success" onClick={handleSubmit} style={{ marginRight: "10px" }}>
                         जतन करा
                       </Button>

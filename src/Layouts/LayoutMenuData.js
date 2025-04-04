@@ -120,7 +120,7 @@ const Navdata = () => {
             { id: 11, label: "किरकोळ मागणी नोंदवही", link: "/नमुना-११-अहवाल" },
             { id: 12, label: "आकस्मिक खर्च प्रमाणक", link: "/auth-signin-cover" },
             { id: 13, label: "कर्मचारी वर्गाची सूची व वेतनश्रेणी नोंदवही", link: "/नमुना-१३-अहवाल" },
-            { id: 14, label: "मुद्रांक हिशोब नोंदवही ", link: "/नमुना-१४-अहवाल" },
+            { id: 14, label: "मुद्रांक हिशोब नोंदवही ", link: "/namuna14mudrankreport" },
             { id: 15, label: "उपभोग्य वस्तूंसाठी नोंदवही", link: "/auth-signin-advanced" }, // Added third item
           ],
         },

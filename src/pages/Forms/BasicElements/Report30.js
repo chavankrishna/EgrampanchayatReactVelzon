@@ -519,8 +519,8 @@ const Report30 = () => {
                         <table id="buttons-datatables" className="display table table-bordered dataTable no-footer" ref={tableRef}>
                           <thead>
                             <tr>
-                              <th>अनुक्रमांक</th> {/* Serial Number Column */}
-                              <th>ॲक्शन</th>
+                              <th>अनुक्रमांक</th> {/* Serial Number Column */}   
+                              <th>क्रिया</th>
                               <th>लेखापरिक्षण अहवाल वर्ष</th>
                               <th>लेखापरिक्षण अहवाल प्राप्त झाल्याचा दिनांक</th>
                               <th>अहवालांतील आक्षेपांची संख्या </th>
@@ -551,14 +551,14 @@ const Report30 = () => {
                               <tr key={index}>
                                 <td>{data.id}</td>
                                 <td>
-                                  <div className="d-flex gap-2">
-                                    <button className="btn btn-sm btn-success" onClick={() => navigate("/नमुना-३०-अपडेट", { state: data })}>
+                                  <div className="d-flex gap-2" style={{ flexWrap: "nowrap", alignItems: "center" }} >
+                                    <button className="btn btn-sm btn-success" style={{ whiteSpace: "nowrap" }} onClick={() => navigate("/नमुना-३०-अपडेट", { state: data })}>
                                       अद्यतन करा
                                     </button>
-                                    <button className="btn btn-sm btn-danger" onClick={() => handleDelete(data.id)}>
+                                    <button className="btn btn-sm btn-danger" style={{ whiteSpace: "nowrap" }} onClick={() => handleDelete(data.id)}>
                                       काढून टाका
                                     </button>
-                                    <button className="btn btn-sm btn-primary" onClick={() => navigate("/नमुना-३०-पाहणी-पृष्ठ", { state: data })}>
+                                    <button className="btn btn-sm btn-primary" style={{ whiteSpace: "nowrap" }} onClick={() => navigate("/नमुना-३०-पाहणी-पृष्ठ", { state: data })}>
                                       डेटा पाहा
                                     </button>
                                   </div>

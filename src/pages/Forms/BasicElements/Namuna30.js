@@ -266,13 +266,13 @@ const Namuna30 = () => {
     ];
 
     // Validate required fields
-    const isFormValid = requiredFields.every((field) => formData[field]?.trim() !== ""); // Check if fields are non-empty
-    if (!isFormValid) {
-      const errorMessage = "कृपया सर्व आवश्यक क्षेत्रे भरा";
-      setErrorMessage(errorMessage);
-      setSuccessMessage(""); // Clear any success messages
-      return;
-    }
+    // const isFormValid = requiredFields.every((field) => formData[field]?.trim() !== ""); // Check if fields are non-empty
+    // if (!isFormValid) {
+    //   const errorMessage = "कृपया सर्व आवश्यक क्षेत्रे भरा";
+    //   setErrorMessage(errorMessage);
+    //   setSuccessMessage(""); // Clear any success messages
+    //   return;
+    // }
 
     try {
       // Retrieve token from localStorage

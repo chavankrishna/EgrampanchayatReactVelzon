@@ -91,7 +91,9 @@ const Report32 = () => {
     }
   }, []);
 
-  // Initialize DataTable once
+
+
+  // Initialize DataTable
   useEffect(() => {
     if (tableRef.current && !$.fn.dataTable.isDataTable("#buttons-datatables")) {
       $("#buttons-datatables").DataTable({
@@ -124,27 +126,109 @@ const Report32 = () => {
             },
           },
           {
+            extend: "pdf",
+            text: "PDF",
+            title: "Exported Data",
+            exportOptions: {
+              columns: ":visible:not(:nth-child(2))", // Exclude the 'क्रिया' column
+            },
+            customize: function (doc) {
+              const headers = [];
+              $("#buttons-datatables thead tr th").each(function () {
+                headers.push($(this).text().trim());
+              });
+
+              const rows = [];
+              $("#buttons-datatables tbody tr").each(function () {
+                const rowData = [];
+                $(this)
+                  .find("td")
+                  .each(function () {
+                    rowData.push($(this).text().trim());
+                  });
+                rows.push(rowData);
+              });
+
+              doc.content = [
+                {
+                  table: {
+                    headerRows: 1,
+                    widths: Array(headers.length).fill("*"),
+                    body: [
+                      headers, // Header row
+                      ...rows, // Data rows
+                    ],
+                  },
+                  layout: "lightHorizontalLines",
+                },
+              ];
+
+              doc.styles = {
+                tableHeader: {
+                  fontSize: 12,
+                  bold: true,
+                  alignment: "center",
+                  color: "#000",
+                },
+                tableData: {
+                  fontSize: 10,
+                  alignment: "center",
+                },
+              };
+
+              return doc;
+            },
+          },
+          {
             extend: "print",
             text: "Print",
-            action: function (e, dt, node, config) {
-              // Redirect to custom page
-              // window.location.href = "/print33";
-              navigate("/print33");
+            customize: function (win) {
+              $(win.document.body).find("header, footer, .breadcrumb, .btn, .page-title, .card-header").hide();
+              $(win.document.body).find("table").addClass("table-bordered table-sm");
+              $(win.document.body).find("table").css("width", "100%");
+
+              // Hide the 'क्रिया' column during print
+              $(win.document.body).find("th:nth-child(2), td:nth-child(2)").hide(); // Hide the second column
+
+              // Apply your custom header above the table
+              const headerHtml = `
+                                <div class="header-container">
+                                    <div class="header-row">
+                                        <div class="left">नमुना ३२ रक्कमेच्या परताव्यासाठीचा आदेश</div>
+                                    </div>
+                                    <h1>रक्कमेच्या परताव्यासाठीचा आदेश</h1>
+                                    <div class="left" style="margin-top: -38px;">नमुना नं . ३२</div>
+                                    <div class="header-row">
+                                        <div class="left">नियम १६(१) व (२) आणि २२(१) पहा</div>
+                                    </div>
+                                    <div class="center-section">
+                                        <div>ग्रामपंचायत <span>________</span></div>
+                                        <div>तालुका <span>________</span></div>
+                                        <div>जिल्हा <span>________</span></div>
+                                    </div>
+                                </div>
+                            `;
+
+              $(win.document.body).prepend(headerHtml);
             },
-          },      
+          },
         ],
         paging: true,
-        search: true,
-        pageLength: 10,
+        searching: true,
+        pageLength: 5,
         language: {
           emptyTable: "No data available in table",
-          paginate: { previous: "Previous", next: "Next" },
+          paginate: { previous: "मागील", next: "पुढील" },    
           search: "Search records:",
         },
-        columnDefs: [{ targets: -1, orderable: false }],
+        columnDefs: [{ targets: -1, orderable: false }], // Disable sorting on the last column (actions column)
       });
     }
-  }, [dataList]);
+  }, [dataList]); 
+
+
+
+
   // Handle input changes for new record
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -193,7 +277,12 @@ const Report32 = () => {
       // Perform the delete request with token authorization
       const response = await axios.post(
         `http://localhost:8080/rakkampartavya/delete/${id}`,
-        {},
+        {
+          employeeId: "",
+          employeeName: "",
+          gramPanchayatId: "",
+          gramPanchayatName: "",
+        },
         {
           headers: {
             Authorization: `Bearer ${token}`, // Add the token to the request header
@@ -255,13 +344,20 @@ const Report32 = () => {
   return (
     <React.Fragment>
       <style>
-        {`
+                {`
+                .page-title-right {
+                    display: flex;
+                    justify-content: flex-end;
+                    width: 100%;
+                }
+
+                @media (max-width: 768px) {
                     .page-title-right {
-                        margin-left: 67%;
+                    justify-content: center; /* Center align on smaller screens */
                     }
+                }
                 `}
-                
-      </style>
+        </style> 
       <div className="page-content">
         <Container fluid>
           <BreadCrumb title={breadcrumbTitle} pageTitle={breadcrumbPageTitle} paths={breadcrumbPaths} />
@@ -288,9 +384,7 @@ const Report32 = () => {
                   <div className="table-responsive">
                     <div id="buttons-datatables_wrapper" className="dataTables_wrapper dt-bootstrap5 no-footer">
                       <div style={{ display: "flex", justifyContent: "flex-end", alignItems: "center", marginBottom: "-31px" }}>
-                        <label htmlFor="search" className="me-2 mb-0">
-                          शोधा:
-                        </label>
+                        
                         <input
                           type="search"
                           id="search"
@@ -312,7 +406,7 @@ const Report32 = () => {
                           <thead>
                             <tr>
                               <th>आयडी</th> {/* ID as first column */}
-                              <th>अॅक्शन</th> {/* Action column moved to second position */}
+                              <th>क्रिया</th> {/* Action column moved to second position */}
                               <th>पावती क्रमांक</th>
                               <th>दिलेली मूळ रक्कम दिनांक</th>
                               <th>रक्कम</th>
@@ -335,15 +429,15 @@ const Report32 = () => {
                                                                 </td> */}
 
                                 <td>
-                                  <div className="d-flex gap-2">
-                                    <button className="btn btn-sm btn-success edit-item-btn" onClick={() => navigate("/नमुना-३२-अपडेट", { state: data })}>
-                                      एडिट करा
+                                  <div className="d-flex gap-2" style={{ flexWrap: "nowrap", alignItems: "center" }}>
+                                    <button className="btn btn-sm btn-success edit-item-btn" style={{ whiteSpace: "nowrap" }} onClick={() => navigate("/नमुना-३२-अपडेट", { state: data })}>
+                                      अद्यतन करा 
                                     </button>
-                                    <button className="btn btn-sm btn-danger remove-item-btn" onClick={() => handleDelete(data.id)}>
+                                    <button className="btn btn-sm btn-danger remove-item-btn" style={{ whiteSpace: "nowrap" }} onClick={() => handleDelete(data.id)}>
                                       काढून टाका
                                     </button>
 
-                                    <button className="btn btn-sm btn-primary remove-item-btn" onClick={() => navigate("/नमुना-३२-पाहणी-पृष्ठ", { state: data })}>
+                                    <button className="btn btn-sm btn-primary remove-item-btn" style={{ whiteSpace: "nowrap" }} onClick={() => navigate("/नमुना-३२-पाहणी-पृष्ठ", { state: data })}>
                                       डेटा पाहा
                                     </button>
                                   </div>

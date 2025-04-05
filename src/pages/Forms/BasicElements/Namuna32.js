@@ -31,6 +31,8 @@ const Namuna32 = () => {
   const [successMessage, setSuccessMessage] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const [yearRanges, setYearRanges] = useState([]);
+  const [error,setError] = useState("");
+  const [error1,setError1] = useState("");
 
   const [dataList, setDataList] = useState([]);
   // Get session message on page load
@@ -51,8 +53,36 @@ const Namuna32 = () => {
 
   const handleInputChange = (e) => {
     const { id, value } = e.target;
-    setFormData({ ...formData, [id]: value });
+
+    //setFormData({ ...formData, [id]: value });
+    setFormData((prevState) => ({
+      ...prevState,
+      [id]: value,
+    }));
+
+    const regex = /^[\u0900-\u097F A-Za-z\s]+$/; // Allows Hindi, Marathi & English 
+    if (id === "thevidaracheNav") 
+    {
+        if (value === "" || regex.test(value)) {
+            setError(""); // Clear error message if input is valid
+        } else {
+          setError("कृपया वैध नाव भरा (केवळ हिंदी, मराठी किंवा इंग्रजी अक्षरे)");
+      }
+    }
+    else if(id === "shera")
+    {
+      if (value === "" || regex.test(value)) {
+        setError1(""); // Clear error message if input is valid
+       } else {
+        setError1("कृपया वैध नाव भरा (केवळ हिंदी, मराठी किंवा इंग्रजी अक्षरे)");
+       }
+
+    }
+
+
+    
   };
+
   // Convert date format from dd/mm/yyyy to yyyy-mm-dd
   const convertDateFormat = (date) => {
     const dateObj = new Date(date);
@@ -220,13 +250,20 @@ const Namuna32 = () => {
   return (
     <React.Fragment>
       <style>
-        {`
+                {`
+                .page-title-right {
+                    display: flex;
+                    justify-content: flex-end;
+                    width: 100%;
+                }
+
+                @media (max-width: 768px) {
                     .page-title-right {
-                        margin-left: 67%;
+                    justify-content: center; /* Center align on smaller screens */
                     }
+                }
                 `}
-                
-      </style>
+        </style> 
       <UiContent />
       <div className="page-content">
         <Container fluid>
@@ -282,7 +319,8 @@ const Namuna32 = () => {
                             ठेवीदाराचे नाव
                           </Label>
                           <Input type="text" className="form-control" id="thevidaracheNav" value={formData.thevidaracheNav} onChange={handleInputChange} />
-                        </div>
+                          {error && <small style={{ color: "red" }}>{error}</small>} 
+                        </div> 
                       </Col>
 
                       <Col xxl={3} md={3}>
@@ -312,13 +350,14 @@ const Namuna32 = () => {
                             onChange={handleInputChange}
                             rows="4" // You can adjust the number of rows as needed
                           />
+                          {error1 && <small style={{ color: "red" }}>{error1}</small>}
                              
                         </div>
                       </Col>
                     </Row>
                   </div>
                   <div className="col-lg-12" style={{ marginTop: "20px" }}>
-                    <div className="text-start">
+                    <div className="d-flex justify-content-end flex-wrap gap-2">
                       <Button color="success" onClick={handleSubmit} style={{ marginRight: "10px" }}>
                         जतन करा
                       </Button>

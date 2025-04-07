@@ -89,60 +89,140 @@ const Report27 = () => {
     fetchData();
   }, []); // Empty dependency array to run this effect only once when the component mounts
 
-  // Initialize DataTable
-  useEffect(() => {
-    if (tableRef.current && !$.fn.dataTable.isDataTable("#buttons-datatables")) {
-      $("#buttons-datatables").DataTable({
-        dom: '<"row" <"col-md-6" B>>t<"row" <"col-md-6" i><"col-md-6" p>>',
-        buttons: [
-          {
-            extend: "copy",
-            text: "Copy",
-            exportOptions: {
-              columns: ":visible:not(:nth-child(2))", // Exclude the 'क्रिया' column (which is the 2nd column)
+     // Initialize DataTable
+      useEffect(() => {
+        if (tableRef.current && !$.fn.dataTable.isDataTable("#buttons-datatables")) {
+          $("#buttons-datatables").DataTable({
+            dom: '<"row" <"col-md-6" B>>t<"row" <"col-md-6" i><"col-md-6" p>>',
+            buttons: [
+              {
+                extend: "copy",
+                text: "Copy",
+                exportOptions: {
+                  columns: ":visible:not(:nth-child(2))", // Exclude the 'क्रिया' column (which is the 2nd column)
+                },
+              },
+              {
+                extend: "csv",
+                text: "CSV",
+                title: "Exported Data",
+                exportOptions: {
+                  columns: ":visible:not(:nth-child(2))", // Exclude the 'क्रिया' column
+                },
+                customize: function (csv) {
+                  const utf8BOM = "\uFEFF"; // UTF-8 BOM
+                  return utf8BOM + csv; // Return the final CSV with BOM
+                },
+              },
+              {
+                extend: "excel",
+                text: "Excel",
+                exportOptions: {
+                  columns: ":visible:not(:nth-child(2))", // Exclude the 'क्रिया' column
+                },
+              },
+              {
+                extend: "pdf",
+                text: "PDF",
+                title: "Exported Data",
+                exportOptions: {
+                  columns: ":visible:not(:nth-child(2))", // Exclude the 'क्रिया' column
+                },
+                customize: function (doc) {
+                  const headers = [];
+                  $("#buttons-datatables thead tr th").each(function () {
+                    headers.push($(this).text().trim());
+                  });
+    
+                  const rows = [];
+                  $("#buttons-datatables tbody tr").each(function () {
+                    const rowData = [];
+                    $(this)
+                      .find("td")
+                      .each(function () {
+                        rowData.push($(this).text().trim());
+                      });
+                    rows.push(rowData);
+                  });
+    
+                  doc.content = [
+                    {
+                      table: {
+                        headerRows: 1,
+                        widths: Array(headers.length).fill("*"),
+                        body: [
+                          headers, // Header row
+                          ...rows, // Data rows
+                        ],
+                      },
+                      layout: "lightHorizontalLines",
+                    },
+                  ];
+    
+                  doc.styles = {
+                    tableHeader: {
+                      fontSize: 12,
+                      bold: true,
+                      alignment: "center",
+                      color: "#000",
+                    },
+                    tableData: {
+                      fontSize: 10,
+                      alignment: "center",
+                    },
+                  };
+    
+                  return doc;
+                },
+              },
+              {
+                extend: "print",
+                text: "Print",
+                customize: function (win) {
+                  $(win.document.body).find("header, footer, .breadcrumb, .btn, .page-title, .card-header").hide();
+                  $(win.document.body).find("table").addClass("table-bordered table-sm");
+                  $(win.document.body).find("table").css("width", "100%");
+    
+                  // Hide the 'क्रिया' column during print
+                  $(win.document.body).find("th:nth-child(2), td:nth-child(2)").hide(); // Hide the second column
+    
+                  // Apply your custom header above the table
+                  const headerHtml = `
+                                    <div class="header-container">
+                                        <div class="header-row">
+                                            <div class="left">नमुना २७ लेखा परीक्षणातील आक्षेपांच्या मासिक विवरण</div>
+                                        </div>
+                                        <h1>लेखा परीक्षणातील आक्षेपांच्या मासिक विवरण</h1>
+                                        <div class="left" style="margin-top: -38px;">नमुना नं . २७</div>
+                                        <div class="header-row">
+                                            <div class="left">नियम १६(१) व (२) आणि २२(१) पहा</div>
+                                        </div>
+                                        <div class="center-section">
+                                            <div>ग्रामपंचायत <span>________</span></div> 
+                                            <div>तालुका <span>________</span></div> 
+                                            <div>जिल्हा <span>________</span></div> 
+                                        </div>
+                                    </div>
+                                `;
+    
+                  $(win.document.body).prepend(headerHtml);
+                },
+              },
+            ],
+            paging: true,
+            searching: true,
+            pageLength: 5,
+            language: {
+              emptyTable: "No data available in table",
+              paginate: { previous: "मागील", next: "पुढील" },    
+              search: "Search records:",
             },
-          },
-          {
-            extend: "csv",
-            text: "CSV",
-            title: "Exported Data",
-            exportOptions: {
-              columns: ":visible:not(:nth-child(2))", // Exclude the 'क्रिया' column
-            },
-            customize: function (csv) {
-              const utf8BOM = "\uFEFF"; // UTF-8 BOM
-              return utf8BOM + csv; // Return the final CSV with BOM
-            },
-          },
-          {
-            extend: "excel",
-            text: "Excel",
-            exportOptions: {
-              columns: ":visible:not(:nth-child(2))", // Exclude the 'क्रिया' column
-            },
-          },
-          {
-            extend: "print",
-            text: "Print",
-            action: function (e, dt, node, config) {
-              // Redirect to custom page
-              // window.location.href = "/print33";
-              navigate("/print33");
-            },
-          },
-        ],
-        paging: true,
-        search: true,
-        pageLength: 10,
-        language: {
-          emptyTable: "No data available in table",
-          paginate: { previous: "Previous", next: "Next" },
-          search: "Search records:",
-        },
-        columnDefs: [{ targets: -1, orderable: false }],
-      });
-    }
-  }, [dataList]);
+            columnDefs: [{ targets: -1, orderable: false }], // Disable sorting on the last column (actions column)
+          });
+        }
+      }, [dataList]); 
+
+
   // Handle input changes for new record
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -173,7 +253,12 @@ const Report27 = () => {
       // Send the DELETE request with token authorization
       const response = await axios.post(
         `http://localhost:8080/api/LekhaparikshanAaksheepanNamuna27/delete/${id}`,
-        {},
+        {
+          employeeId: "",
+          employeeName: "",
+          grampanchyatId: "",
+          grampanchyatName: ""
+        },
         {
           headers: {
             Authorization: `Bearer ${token}`, // Include token in the header
@@ -229,13 +314,20 @@ const Report27 = () => {
   return (
     <React.Fragment>
       <style>
-        {`
+                {`
+                .page-title-right {
+                    display: flex;
+                    justify-content: flex-end;
+                    width: 100%;
+                }
+
+                @media (max-width: 768px) {
                     .page-title-right {
-                        margin-left: 62%;
+                    justify-content: center; /* Center align on smaller screens */
                     }
+                }
                 `}
-                
-      </style>
+        </style> 
       <div className="page-content">
         <Container fluid>
           <BreadCrumb title={breadcrumbTitle} pageTitle={breadcrumbPageTitle} paths={breadcrumbPaths} />

@@ -33,8 +33,12 @@ const Namuna32 = () => {
   const [yearRanges, setYearRanges] = useState([]);
   const [error,setError] = useState("");
   const [error1,setError1] = useState("");
+  const [error2,setError2] = useState("");
+  const [error3,setError3] = useState("");
+  const [error4,setError4] = useState("");
+  const [error5,setError5] = useState("");
 
-  const [dataList, setDataList] = useState([]);
+  const [dataList, setDataList] = useState([]); 
   // Get session message on page load
   useEffect(() => {
     const { type, message } = getSessionMessage();
@@ -61,6 +65,8 @@ const Namuna32 = () => {
     }));
 
     const regex = /^[\u0900-\u097F A-Za-z\s]+$/; // Allows Hindi, Marathi & English 
+    const regex1 = /^[0-9\u0966-\u096F]+$/; // Allows Hindi, Marathi & English numbers
+
     if (id === "thevidaracheNav") 
     {
         if (value === "" || regex.test(value)) {
@@ -78,9 +84,45 @@ const Namuna32 = () => {
        }
 
     }
+    else if(id === "pavtiNumber") 
+    {
+      if (value === "" || regex1.test(value)) { 
+        setError2(""); // Clear error message if input is valid
+       } else {
+        setError2("कृपया वैध पावती क्रमांक भरा (केवळ मराठी किंवा इंग्रजी अंक)");
+       }
+    }
+    else if(id === "dileliMulRakkamDate" )
+    {
+      if (value === "") {
+        setError3(""); // Clear error message if input is valid
+      } else {
+        const dateObj = new Date(value);
+        const currentDate = new Date();
+        if (dateObj > currentDate) {
+          setError3("कृपया वैध दिनांक भरा (भविष्य दिनांक नाही)");
+        } else {
+          setError3(""); // Clear error message if input is valid
+        }
+      }
+    }
+    else if(id === "rakkam")
+    {
+      if (value === "" || regex1.test(value)) { 
+        setError4(""); // Clear error message if input is valid
+       } else {
+        setError4("कृपया वैध रक्कम भरा (केवळ मराठी किंवा इंग्रजी अंक)");
+       }
+    }
+    else if(id === "paratKaryachiRakkam")
+    {
+        if (value === "" || regex1.test(value)) { 
+          setError5(""); // Clear error message if input is valid
+         } else {
+          setError5("कृपया वैध रक्कम भरा (केवळ मराठी किंवा इंग्रजी अंक)");
+         }
+    }
 
-
-    
   };
 
   // Convert date format from dd/mm/yyyy to yyyy-mm-dd
@@ -193,8 +235,13 @@ const Namuna32 = () => {
       console.log("Response:", response.data); // Log the response data
 
       // Save success message in sessionStorage
-      const successMessage = "माहिती यशस्वीरीत्या जतन केली गेली आहे";
+      const successMessage = "माहिती यशस्वीरीत्या जतन केली गेली आहे"; 
       sessionStorage.setItem("sessionMessage", successMessage); // Store success message
+
+      // Remove it after 3 seconds (3000 milliseconds)
+      setTimeout(() => { 
+        sessionStorage.removeItem("sessionMessage");
+      }, 3000);
 
       // Navigate to the report page
       navigate("/नमुना-३२-अहवाल");
@@ -208,11 +255,18 @@ const Namuna32 = () => {
       }
 
       // Save the error message in sessionStorage
-      sessionStorage.setItem("sessionMessage", errorMessage); // Store the error message
+      sessionStorage.setItem("sessionMessage", errorMessage);
 
       // Update the state for error message and clear success message
       setErrorMessage(errorMessage);
-      setSuccessMessage(""); // Clear any previous success messages
+      setSuccessMessage(""); // Clear any previous success message
+
+      // Remove from storage and also clear the error message from state after 3 seconds
+      setTimeout(() => {
+        sessionStorage.removeItem("sessionMessage");
+        setErrorMessage(""); // 👈 This clears it from UI
+      }, 3000);
+
     }
   };
 
@@ -283,6 +337,7 @@ const Namuna32 = () => {
                             पावती क्रमांक
                           </Label>
                           <Input type="text" className="form-control" id="pavtiNumber" value={formData.pavtiNumber} onChange={handleInputChange} />
+                          {error2 && <small style={{ color: "red" }}>{error2}</small>}
                         </div>
                       </Col>
 
@@ -291,9 +346,10 @@ const Namuna32 = () => {
                           <Label htmlFor="dileliMulRakkamDate" className="form-label">
                             दिलेली मूळ रक्कम दिनांक
                           </Label>
-                          <Input type="date" className="form-control" id="dileliMulRakkamDate" value={formData.dileliMulRakkamDate} onChange={handleInputChange} />
-                        </div>
-                      </Col>
+                          <Input type="date" className="form-control" id="dileliMulRakkamDate" value={formData.dileliMulRakkamDate} onChange={handleInputChange} /> 
+                          {error3 && <small style={{ color: "red" }}>{error3}</small>}
+                        </div> 
+                      </Col> 
 
                       <Col xxl={3} md={3}>
                         <div>
@@ -301,6 +357,7 @@ const Namuna32 = () => {
                             रक्कम
                           </Label>
                           <Input type="text" className="form-control" id="rakkam" value={formData.rakkam} onChange={handleInputChange} />
+                          {error4 && <small style={{ color: "red" }}>{error4}</small>}
                         </div>
                       </Col>
 
@@ -310,6 +367,7 @@ const Namuna32 = () => {
                             परत करावयाची रकम
                           </Label>
                           <Input type="text" className="form-control" id="paratKaryachiRakkam" value={formData.paratKaryachiRakkam} onChange={handleInputChange} />
+                          {error5 && <small style={{ color: "red" }}>{error5}</small>}
                         </div>
                       </Col>
 

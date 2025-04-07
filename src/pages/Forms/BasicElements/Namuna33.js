@@ -143,7 +143,7 @@ const Namuna33 = () => {
   );
 
   const handleSubmit1 = async () => {
-    console.log("Sending data:", formData);
+    console.log("Sending data:", formData); 
     const token = localStorage.getItem("token");
     console.log("Inside Submit Token: ", token);
 
@@ -151,7 +151,7 @@ const Namuna33 = () => {
 
     // Validate required fields
     const isFormValid = requiredFields.every(
-      (field) => formData[field]?.trim() !== "" // Check if fields are non-empty
+      (field) => formData[field]?.trim() !== "" // Check if fields are non-empty 
     );
 
     if (!isFormValid) {

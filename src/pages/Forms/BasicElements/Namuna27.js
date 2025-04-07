@@ -13,6 +13,16 @@ const Namuna27 = () => {
   document.title = "नमुना २७ - लेखा परीक्षणातील आक्षेपांच्या मासिक विवरण";
   const navigate = useNavigate();
 
+  const [error,setError] = useState("");
+  const [error1,setError1] = useState("");
+  const [error2,setError2] = useState("");
+  const [error3,setError3] = useState("");
+  const [error4,setError4] = useState("");
+  const [error5,setError5] = useState("");
+  const [error6,setError6] = useState("");
+  const [error7,setError7] = useState("");
+
+
   const [formData, setFormData] = useState({
     id: "",
     grampanchayatId: "",
@@ -67,7 +77,79 @@ const Namuna27 = () => {
 
   const handleInputChange = (e) => {
     const { id, value } = e.target;
-    setFormData({ ...formData, [id]: value });
+    //setFormData({ ...formData, [id]: value });
+
+    setFormData((prevState) => ({
+      ...prevState,
+      [id]: value,
+    }));
+
+    const regex = /^[0-9\u0966-\u096F]+$/; // Allows Hindi, Marathi & English numbers
+    const regex1 = /^[\u0900-\u097F A-Za-z\s]+$/; // Allows Hindi, Marathi & English letters and spaces 
+
+
+    if(id === "lekhaparikshanaAhvalatilaParicchhedaSamkhaya" ) 
+    {
+        if(value === "" || regex.test(value)) {
+            setError("");
+        }
+        else
+        {
+            setError("कृपया फक्त अंक भरा");  
+        }
+    } 
+    else if(id === "grampanchayattineeYaMahinyataPootartaKelelyaPariccchhedanchiSaikhaya")
+    {
+      if(value === "" || regex.test(value)) {
+        setError1("");
+      }
+      else
+      {
+        setError1("कृपया फक्त अंक भरा");
+      }
+    }
+    else if(id === "panchayatSamittineAakshepaadaraMaanyaKeleylyaaPootartachiSaikhaya")
+    {
+      if(value === "" || regex.test(value)) {
+        setError2("");
+      }
+      else
+      {
+        setError2("कृपया फक्त अंक भरा");
+      }
+    }
+    else if(id === "lekhaparikshkaneChyaBabatitPootartaMaanyaKeliAaheTyaAaksheepaanchyaaSakhaya")
+    {
+      if(value === "" || regex.test(value)) {
+        setError3("");
+      }
+      else
+      {
+        setError3("कृपया फक्त अंक भरा");
+      }
+    }
+    else if(id === "pootartaNaKelelayabghlachiKaarana")
+    {
+      if(value === "" || regex1.test(value)) {
+        setError4("");
+      }
+      else
+      {
+        setError4("कृपया फक्त मराठी किंवा इंग्रजी अक्षरे भरा");
+      }
+    }
+    else if(id === "shera")
+    {
+      if(value === "" || regex1.test(value)) {
+        setError5("");
+      }
+      else
+      {
+        setError5("कृपया फक्त मराठी किंवा इंग्रजी अक्षरे भरा");
+      }
+    }
+
+
 
     const isMarathiInput = (text) => /^[\u0966-\u096F]+$/.test(text);
 
@@ -327,13 +409,20 @@ const Namuna27 = () => {
   return (
     <React.Fragment>
       <style>
-        {`
+                {`
+                .page-title-right {
+                    display: flex;
+                    justify-content: flex-end;
+                    width: 100%;
+                }
+
+                @media (max-width: 768px) {
                     .page-title-right {
-                        margin-left: 62%;
+                    justify-content: center; /* Center align on smaller screens */
                     }
+                }
                 `}
-                
-      </style>
+        </style>
       <UiContent />
       <div className="page-content">
         <Container fluid>
@@ -374,6 +463,7 @@ const Namuna27 = () => {
                             value={formData.lekhaparikshanaAhvalatilaParicchhedaSamkhaya}
                             onChange={handleInputChange}
                           />
+                          {error && <small style={{ color: "red" }}>{error}</small>} 
                         </div>
                       </Col>
                       <Col xxl={3} md={3}>
@@ -388,6 +478,7 @@ const Namuna27 = () => {
                             value={formData.grampanchayattineeYaMahinyataPootartaKelelyaPariccchhedanchiSaikhaya}
                             onChange={handleInputChange}
                           />
+                          { error1 && <small style={{ color: "red" }}>{error1}</small> }
                         </div>
                       </Col>
                       <Col xxl={3} md={3}>
@@ -402,6 +493,7 @@ const Namuna27 = () => {
                             value={formData.panchayatSamittineAakshepaadaraMaanyaKeleylyaaPootartachiSaikhaya}
                             onChange={handleInputChange}
                           />
+                          {error2 && <small style={{ color: "red" }}>{error2}</small>}
                         </div>
                       </Col>
                       <Col xxl={3} md={3}>
@@ -416,6 +508,7 @@ const Namuna27 = () => {
                             value={formData.lekhaparikshkaneChyaBabatitPootartaMaanyaKeliAaheTyaAaksheepaanchyaaSakhaya}
                             onChange={handleInputChange}
                           />
+                          {error3 && <small style={{ color: "red" }}>{error3}</small>}
                         </div>
                       </Col>
 
@@ -434,6 +527,7 @@ const Namuna27 = () => {
                             पूर्तता न केल्याबद्दलची कारणे
                           </Label>
                           <Input type="text" className="form-control" id="pootartaNaKelelayabghlachiKaarana" value={formData.pootartaNaKelelayabghlachiKaarana} onChange={handleInputChange} />
+                          {error4 && <small style={{ color: "red" }}>{error4}</small>}
                         </div>
                       </Col>
 
@@ -449,12 +543,13 @@ const Namuna27 = () => {
                             onChange={handleInputChange}
                             rows="4" // You can adjust the number of rows as needed
                           />
+                          {error5 && <small style={{ color: "red" }}>{error5}</small>}
                         </div>
                       </Col>
                     </Row>
                   </div>
                   <div className="col-lg-12" style={{ marginTop: "20px" }}>
-                    <div className="text-start">
+                    <div className="d-flex justify-content-end flex-wrap gap-2">
                       <Button color="success" onClick={handleSubmit} style={{ marginRight: "10px" }}>
                         जतन करा
                       </Button>

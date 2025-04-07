@@ -8,20 +8,27 @@ import { Card, CardBody, Col, Container, Label, Row } from "reactstrap";
 import PreviewCardHeader from "../../../Components/Common/PreviewCardHeader";
 import { setSessionMessage, getSessionMessage } from "../BasicElements/finalconfig"; // Import session management functions
 
-import "../BasicElements/style.css";
+import "../BasicElements/style.css";   
 
 const Namuna28 = () => {
   document.title = "नमुना २८ - मागासिगीय १५ टक्के महिला बालकल्याण १० टक्के मासिक विवरण नोंदवही";
   const navigate = useNavigate();
 
+  const [error, setError] = useState("");
+  const [error1, setError1] = useState("");
+  const [error2, setError2] = useState("");
+  const [error3, setError3] = useState("");
+  const [error4, setError4] = useState("");
+  const [error5, setError5] = useState("");
+  const [error6, setError6] = useState("");
+
   const [formData, setFormData] = useState({
-    id: "",
-    gramPanchayatId: "",
-    gramPanchayatName: "",
     employeeId: "",
     employeeName: "",
+    gramPanchayatId: "",
+    gramPanchayatName: "",
+    year: "",
     sanMadhemagasvargiyansathiKeleliTartud: "",
-    san: "",
     chaluMahinyatPraptaJhaleleUtpanna: "",
     fiftyTakkeKharchaKarychiRakkam: "",
     kharchachyaBabiYojanavar: "",
@@ -30,9 +37,11 @@ const Namuna28 = () => {
     ekunKharch: "",
     kharchachiTakkevari: "",
     shera: "",
+    san: "",
+    dinank: "",
     month: "",
-    year: "",
   });
+  
   //---------------------------------------------------------------------
 
   const [successMessage, setSuccessMessage] = useState("");
@@ -54,12 +63,18 @@ const Namuna28 = () => {
       }
     }
   }, [dataList]);
+
+
+
   //Rest of the code is given below
   //-----------------------------------------------------------------------------------------
   const handleInputChangee = (e) => {
+    const regex = /^[0-9\u0966-\u096F]+$/; // Allows Hindi, Marathi & English numbers
+
     const { id, value } = e.target;
     setFormData((prevData) => {
       const newData = { ...prevData, [id]: value };
+
       //--------------------------------------------------------------------------------------
       // Check if the changed field is 'chaluMahinyatPraptaJhaleleUtpanna'
       //15% vla logic
@@ -76,11 +91,26 @@ const Namuna28 = () => {
         }
       }
 
+      if( id === "chaluMahinyatPraptaJhaleleUtpanna" )
+        {
+          if(value === "" || regex.test(value) )
+          {
+            setError1("");
+           // return newData;
+          }
+          else
+          {
+            setError1("कृपया फक्त मराठी किंवा इंग्रजी अंक वापरा.");
+          }
+        }
       return newData;
-
       //-------------------------------------------------------------------------------------------------
     });
+
+
   };
+  
+  
   //----------------------------------------------------------------------------------
   //Code Declaration for 15%
   // Helper functions
@@ -105,7 +135,80 @@ const Namuna28 = () => {
 
   const handleInputChange = (e) => {
     const { id, value } = e.target;
-    setFormData({ ...formData, [id]: value });
+    //setFormData({ ...formData, [id]: value });
+    setFormData((prevState) => ({
+      ...prevState,
+      [id]: value,
+    }));
+
+    const regex = /^[0-9\u0966-\u096F]+$/; // Allows Hindi, Marathi & English numbers
+    const regex1 = /^[\u0900-\u097F A-Za-z\s]+$/; // Allows Hindi, Marathi & English letters and spaces 
+
+    if ( id === "sanMadhemagasvargiyansathiKeleliTartud")
+    {
+      if( value === "" || regex1.test(value) )
+      {
+        setError("");
+      }else
+      {
+        setError("कृपया फक्त मराठी किंवा इंग्रजी अक्षरे वापरा.");
+      }
+    }
+    else if( id === "kharchachyaBabiYojanavar" )
+    {
+      if(value === "" || regex1.test(value) )
+      {
+        setError2("");
+      }
+      else
+      {
+        setError2("कृपया फक्त मराठी किंवा इंग्रजी अक्षरे वापरा.");
+      }
+    }
+    else if( id === "magilMahinayatJhalelaKharcha" )
+    {
+      if(value === "" || regex.test(value) )
+      {
+        setError3("");
+      }
+      else
+      {
+        setError3("कृपया फक्त मराठी किंवा इंग्रजी अंक वापरा.");
+      }
+    }
+    else if( id === "chaluMahinyatJhalelaKharcha" )
+    {
+      if(value === "" || regex.test(value) )
+      {
+        setError4("");
+      }
+      else
+      {
+        setError4("कृपया फक्त मराठी किंवा इंग्रजी अंक वापरा.");
+      }
+    }
+    else if(id === "kharchachiTakkevari")
+    {
+      if(value === "" || regex.test(value) )
+      {
+        setError5("");
+      }
+      else
+      {
+        setError5("कृपया फक्त मराठी किंवा इंग्रजी अंक वापरा.");
+      }
+    }
+    else if(id === "shera")
+    {
+      if(value === "" || regex1.test(value) )
+      {
+        setError6("");
+      }
+      else
+      {
+        setError6("कृपया फक्त मराठी किंवा इंग्रजी अक्षरे वापरा.");
+      }
+    }
   };
 
   // -----------------------------------------------------
@@ -286,13 +389,12 @@ const Namuna28 = () => {
 
   const handleReset = () => {
     setFormData({
-      id: "",
-      gramPanchayatId: "",
-      gramPanchayatName: "",
       employeeId: "",
       employeeName: "",
+      gramPanchayatId: "",
+      gramPanchayatName: "",
+      year: "",
       sanMadhemagasvargiyansathiKeleliTartud: "",
-      san: "",
       chaluMahinyatPraptaJhaleleUtpanna: "",
       fiftyTakkeKharchaKarychiRakkam: "",
       kharchachyaBabiYojanavar: "",
@@ -301,8 +403,9 @@ const Namuna28 = () => {
       ekunKharch: "",
       kharchachiTakkevari: "",
       shera: "",
+      san: "",
+      dinank: "",
       month: "",
-      year: "",
     });
   };
 
@@ -322,8 +425,12 @@ const Namuna28 = () => {
     console.log("Using token:", token);
 
     const requiredFields = [
+      "employeeId",
+      "employeeName",
+      "gramPanchayatId",
+      "gramPanchayatName",
+      "year",
       "sanMadhemagasvargiyansathiKeleliTartud",
-      "san",
       "chaluMahinyatPraptaJhaleleUtpanna",
       "fiftyTakkeKharchaKarychiRakkam",
       "kharchachyaBabiYojanavar",
@@ -332,8 +439,9 @@ const Namuna28 = () => {
       "ekunKharch",
       "kharchachiTakkevari",
       "shera",
+      "san",
+      "dinank",
       "month",
-      "year",
     ];
 
     // Validate required fields
@@ -367,13 +475,12 @@ const Namuna28 = () => {
 
       // Clear all form fields after success
       setFormData({
-        // id: "",
-        // gramPanchayatId: "",
-        // gramPanchayatName: "",
-        // employeeId: "",
-        // employeeName: "",
+        employeeId: "",
+        employeeName: "",
+        gramPanchayatId: "",
+        gramPanchayatName: "",
+        year: "",
         sanMadhemagasvargiyansathiKeleliTartud: "",
-        san: "",
         chaluMahinyatPraptaJhaleleUtpanna: "",
         fiftyTakkeKharchaKarychiRakkam: "",
         kharchachyaBabiYojanavar: "",
@@ -382,8 +489,9 @@ const Namuna28 = () => {
         ekunKharch: "",
         kharchachiTakkevari: "",
         shera: "",
+        san: "",
+        dinank: "",
         month: "",
-        year: "",
       });
     } catch (error) {
       // Handle error response
@@ -419,13 +527,20 @@ const Namuna28 = () => {
   return (
     <React.Fragment>
       <style>
-        {`
+                {`
+                .page-title-right {
+                    display: flex;
+                    justify-content: flex-end;
+                    width: 100%;
+                }
+
+                @media (max-width: 768px) {
                     .page-title-right {
-                        margin-left: 71%;
+                    justify-content: center; /* Center align on smaller screens */
                     }
+                }
                 `}
-                
-      </style>
+        </style> 
       <UiContent />
       <div className="page-content">
         <Container fluid>
@@ -442,7 +557,7 @@ const Namuna28 = () => {
                       <Col xxl={3} md={3}>
                         <div>
                           <Label htmlFor="sanMadhemagasvargiyansathiKeleliTartud" className="form-label">
-                            सन मध्ये मागासवर्गीयांसाठी केलेली तरतूद
+                            सन मध्ये मागासवर्गीयांसाठी केलेली तरतूद 
                           </Label>
                           <Input
                             type="text"
@@ -451,8 +566,9 @@ const Namuna28 = () => {
                             value={formData.sanMadhemagasvargiyansathiKeleliTartud}
                             onChange={handleInputChange}
                           />
+                          {error && <div className="text-danger">{error}</div>}
                         </div>
-                      </Col>
+                      </Col> 
 
                       <Col xxl={3} md={3}>
                         <div>
@@ -476,6 +592,7 @@ const Namuna28 = () => {
                             चालू महिन्यात प्राप्त झालेले उत्पन्न
                           </Label>
                           <Input type="text" className="form-control" id="chaluMahinyatPraptaJhaleleUtpanna" value={formData.chaluMahinyatPraptaJhaleleUtpanna} onChange={handleInputChangee} />
+                          {error1 && <div className="text-danger">{error1}</div>}
                         </div>
                       </Col>
 
@@ -494,16 +611,18 @@ const Namuna28 = () => {
                             खर्चाच्या बाबी बाबवार / योजनावार
                           </Label>
                           <Input type="text" className="form-control" id="kharchachyaBabiYojanavar" value={formData.kharchachyaBabiYojanavar} onChange={handleInputChange} />
+                          {error2 && <div className="text-danger">{error2}</div>}
                         </div>
                       </Col>
 
                       <Col xxl={3} md={3}>
                         <div>
                           <Label htmlFor="magilMahinayatJhalelaKharcha" className="form-label">
-                            मागील महिन्यात झालेला खर्च{" "}
+                            मागील महिन्यात झालेला खर्च{" "}  
                           </Label>
                           <Input type="text" className="form-control" id="magilMahinayatJhalelaKharcha" value={formData.magilMahinayatJhalelaKharcha} onChange={handleInputChange} />
-                        </div>
+                          {error3 && <div className="text-danger">{error3}</div>}
+                        </div> 
                       </Col>
 
                       <Col xxl={3} md={3}>
@@ -512,6 +631,7 @@ const Namuna28 = () => {
                             चालू महिन्यात झालेला खर्च
                           </Label>
                           <Input type="text" className="form-control" id="chaluMahinyatJhalelaKharcha" value={formData.chaluMahinyatJhalelaKharcha} onChange={handleInputChange} />
+                          {error4 && <div className="text-danger">{error4}</div>}
                         </div>
                       </Col>
 
@@ -534,6 +654,7 @@ const Namuna28 = () => {
                             खर्चाची टक्केवारी
                           </Label>
                           <Input type="text" className="form-control" id="kharchachiTakkevari" value={formData.kharchachiTakkevari} onChange={handleInputChange} />
+                          {error5 && <div className="text-danger">{error5}</div>}
                         </div>
                       </Col>
 
@@ -580,6 +701,7 @@ const Namuna28 = () => {
                             onChange={handleInputChange}
                             rows="4" // You can adjust the number of rows as needed
                           />
+                          {error6 && <div className="text-danger">{error6}</div>}
                              
                         </div>
                       </Col>

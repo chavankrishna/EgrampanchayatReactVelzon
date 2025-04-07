@@ -260,7 +260,12 @@ const Report28 = () => {
       // Make the API request to delete data
       const response = await axios.post(
         `http://localhost:8080/masikvivaran/delete/${id}`,
-        {}, // Pass any necessary data here if needed
+        {
+          "employeeId": "",
+          "employeeName": "",
+          "gramPanchayatId": "",
+          "gramPanchayatName": ""
+        }, // Pass any necessary data here if needed
         {
           headers: {
             "Content-Type": "application/json",
@@ -330,13 +335,20 @@ const Report28 = () => {
   return (
     <React.Fragment>
       <style>
-        {`
+                {`
+                .page-title-right {
+                    display: flex;
+                    justify-content: flex-end;
+                    width: 100%;
+                }
+
+                @media (max-width: 768px) {
                     .page-title-right {
-                        margin-left: 71%;
+                    justify-content: center; /* Center align on smaller screens */
                     }
+                }
                 `}
-                
-      </style>
+        </style> 
       <div className="page-content">
         <Container fluid>
           <BreadCrumb title={breadcrumbTitle} pageTitle={breadcrumbPageTitle} paths={breadcrumbPaths} />

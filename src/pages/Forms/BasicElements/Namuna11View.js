@@ -4,7 +4,7 @@ import { Button, Container, Row, Col, Table, Card, CardBody } from 'reactstrap';
 import BreadCrumb from '../../../Components/Common/BreadCrumb';
 
 const ViewDetails = () => {
-    const location = useLocation();
+    const location = useLocation(); 
     const navigate = useNavigate();
     const record = location.state; // Access the passed data
 
@@ -14,6 +14,21 @@ const ViewDetails = () => {
 
     return (
         <React.Fragment>
+            <style>
+                {`
+                .page-title-right {
+                    display: flex;
+                    justify-content: flex-end;
+                    width: 100%;
+                }
+
+                @media (max-width: 768px) {
+                    .page-title-right {
+                    justify-content: center; /* Center align on smaller screens */
+                    }
+                }
+                `}
+            </style> 
             <div className="page-content">
                 <Container fluid>
                     <BreadCrumb
@@ -35,68 +50,56 @@ const ViewDetails = () => {
                                         <tbody>
                                             <tr>
                                                 <th>कर्मचारी आयडी</th>
-                                                <td>{record.employeeId}</td>
+                                                <td>{record.id}</td>
                                             </tr>
                                             <tr>
                                                 <th>ज्याने मागणीची रकम घ्यावयाची त्या इसमाचे नाव व पत्ता </th>
-                                                <td>{record.jayaniMagnichiRakaGhyavayaachiTyaEsamachaNavaNvaPataa}</td>
+                                                <td>{record.propertyOwnerName}</td>
                                             </tr>
                                             <tr>
                                                 <th>मागणीचे स्वरूप</th>
-                                                <td>{record.maganichiSvarup}</td>
+                                                <td>{record.magniche_Swarup}</td>
                                             </tr>
                                             <tr>
                                                 <th>मागणीसाठी प्राधिकार</th>
-                                                <td>{record.maganisathiPradhikar}</td>
+                                                <td>{record.magnisathi_Pradhikar}</td>
                                             </tr>
                                             <tr>
                                                 <th>मागणी हप्ता </th>
-                                                <td>{record.magniHafta}</td>
+                                                <td>{record.magni_Happta}</td>
                                             </tr>
                                             <tr>
                                                 <th>मागणी रकम</th>
-                                                <td>{record.magniRakam}</td>
+                                                <td>{record.magni_Rakam}</td>
                                             </tr>
                                             <tr>
                                                 <th>मागणी एकूण रकम</th>
-                                                <td>{record.magniEkunRakam}</td>
+                                                <td>{record.magni_Total}</td>
                                             </tr>
                                            
                                             <tr>
-                                                <th>देयक क्रमांक</th>
-                                                <td>{record.deyaKramank}</td>
+                                                <th>देयक क्रमांक / तारीख</th>
+                                                <td>{record.deyakramankOR_Date}</td>
                                             </tr>
                                             <tr>
-                                                <th>देयक क्रमांक तारीख </th>
-                                                <td>{record.deyaKramankTarikha}</td>
-                                            </tr>
-                                            <tr>
-                                                <th>वसूली झालेल्या रकम पावतीचा क्रमांक </th>
-                                                <td>{record.vasuliJhaleleRakamakPavtichaKramank}</td>
-                                            </tr>
-                                            <tr>
-                                                <th>वसूली झालेल्या रकम पावतीचा तारीख</th>
-                                                <td>{record.vasuliJhaleleRakamaPavtichaKramankTarkhi}</td>
+                                                <th>वसूली झालेल्या रकम पावतीचा क्रमांक / तारीख </th>
+                                                <td>{record.vasuli_PavtiKramankOR_Date}</td>
                                             </tr>
                                             <tr>
                                                 <th>वसूली झालेल्या रकम रुपये</th>
-                                                <td>{record.vasuliJhaleleRakamaRamkamRupaye}</td>
+                                                <td>{record.vasuli_Rakam}</td>
                                             </tr>
                                             <tr>
-                                                <th>सूट आदेश  क्रमांक </th>
-                                                <td>{record.sutiAadeshachaKramank}</td>
-                                            </tr>
-                                            <tr>
-                                                <th>सूट आदेश  क्रमांक  तारीख</th>
-                                                <td>{record.sutiAadeshachaKramankTharki}</td>
+                                                <th>सूट आदेश  क्रमांक / तारीख </th> 
+                                                <td>{record.sut_AadheshachaKramankOR_Date}</td> 
                                             </tr>
                                             <tr>
                                                 <th>सूट रकम रुपये </th>
-                                                <td>{record.suitRakamRupaye}</td>
+                                                <td>{record.sut_Rakam}</td>
                                             </tr>
                                             <tr>
                                                 <th>शिलक</th>
-                                                <td>{record.silaka}</td>
+                                                <td>{record.shillak}</td>
                                             </tr>
                                             <tr>
                                                 <th>शेरा</th>

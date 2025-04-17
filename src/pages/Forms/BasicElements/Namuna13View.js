@@ -8,7 +8,7 @@ import BreadCrumb from "../../../Components/Common/BreadCrumb";
 import PreviewCardHeader from "../../../Components/Common/PreviewCardHeader";
 import UiContent from "../../../Components/Common/UiContent";
 
-const Namuna13_view = () => {
+const Namuna13View = () => {
   const { state } = useLocation(); // Access the passed record data from the previous page
   const navigate = useNavigate();
 
@@ -199,4 +199,4 @@ const Namuna13_view = () => {
   );
 };
 
-export default Namuna13_view;
+export default Namuna13View;

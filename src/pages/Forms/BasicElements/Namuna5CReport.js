@@ -16,7 +16,7 @@ import "./Report23.css";
 import { setSessionMessage, getSessionMessage } from "../BasicElements/finalconfig"; // Import session management functions
 import BreadCrumb from "../../../Components/Common/BreadCrumb";
 
-const Report33 = () => {
+const Namuna5CReport = () => {
   const [dataList, setDataList] = useState([]);
   const [modal_list, setModalList] = useState(false);
   const [modal_delete, setModalDelete] = useState(false);
@@ -27,12 +27,17 @@ const Report33 = () => {
     grampanchayatName: "",
     employeeId: "",
     employeeName: "",
-    naav: "",
-    vrukshkrmank: "",
-    vrukshprakar: "",
-    vrukshjopasnechijababdari: "",
+    pavtiKramank: "",
+    konakdunMilali: "",
+    jamaRakkamTapshil: "",
+    rokhRakkam: "",
+    dhanadeshRakkam: "",
+    dhanadeshKinvaRakkamJamaDinank: "",
+    dhanadeshVatvilyachaDinank: "",
     shera: "",
     date: "",
+    year: "",
+    month: "",
   });
 
   const navigate = useNavigate();
@@ -65,7 +70,7 @@ const Report33 = () => {
         }
 
         const response = await axios.post(
-          "http://localhost:8080/Namuna33VrukshNondViha/getall",
+          "http://localhost:8080/Namuna5C_DainikRokadVahi/getall",
           {},
           {
             headers: {
@@ -93,7 +98,7 @@ const Report33 = () => {
       if (tableRef.current && !$.fn.dataTable.isDataTable("#buttons-datatables")) {
         $("#buttons-datatables").DataTable({
           dom: '<"row" <"col-md-6" B>>t<"row" <"col-md-6" i><"col-md-6" p>>',
-          buttons: [
+          buttons: [ 
             {
               extend: "copy",
               text: "Copy",
@@ -191,8 +196,8 @@ const Report33 = () => {
                                       <div class="header-row">
                                           <div class="left">महाराष्ट्र ग्रामपंचायत लेखा संहिता - २०११</div>
                                       </div>
-                                      <h1>नमुना ३३ वृक्ष नोंदवही</h1> 
-                                      <div class="left" style="margin-top: -38px;">नमूना क्र. ३३</div>
+                                      <h1> नमुना नं.५ - दैनिक रोकड वही </h1> 
+                                      <div class="left" style="margin-top: -38px;">नमूना क्र.५</div>
                                       <div class="header-row">
                                           <div class="left">नियम २५(७) पहा</div>
                                       </div>
@@ -257,8 +262,13 @@ const Report33 = () => {
 
       // Send the delete request with token in headers
       const response = await axios.post(
-        `http://localhost:8080/Namuna33VrukshNondViha/delete_by_id/${id}`,
-        {},
+        `http://localhost:8080/Namuna5C_DainikRokadVahi/delete/${id}`,
+        {
+          "employeeId": "",
+        "employeeName": "",
+        "grampanchayatId": "",
+        "grampanchayatName": ""
+       },
         {
           headers: {
             "Content-Type": "application/json",
@@ -274,7 +284,7 @@ const Report33 = () => {
       sessionStorage.setItem("sessionMessage", successMessage); // Store the success message
 
       // Redirect to the report page
-      window.location.href = "/नमुना-३३-अहवाल";
+      window.location.href = "/नमुना-५-अहवाल";
     } catch (error) {
       console.error("Error deleting data:", error);
 
@@ -306,13 +316,13 @@ const Report33 = () => {
     const dataTable = $("#buttons-datatables").DataTable();
     dataTable.search(searchQuery).draw(); // Trigger search in DataTable
   };
-  const breadcrumbTitle = "अहवाल-३३"; // This could be dynamic
-  const breadcrumbPageTitle = "डॅशबोर्ड / नमुना ३३ वृक्ष नोंदवही "; // Dynamic page title
+  const breadcrumbTitle = "अहवाल-५"; // This could be dynamic
+  const breadcrumbPageTitle = "डॅशबोर्ड / नमुना ५ - दैनिक रोकड वही "; // Dynamic page title
 
   // Define paths corresponding to each breadcrumb part
   const breadcrumbPaths = [
     "/dashboard", // Path for "डॅशबोर्ड"
-    "/नमुना-३३", // Path for "२५ - गुंतवणूक वही"
+    "/नमुना-५", // Path for "२५ - गुंतवणूक वही"
   ];
   return (
     <React.Fragment>
@@ -340,10 +350,10 @@ const Report33 = () => {
                 <CardHeader>
                   <Row>
                     <Col lg={8}>
-                      <h4 className="card-title mb-0"> नमुना ३३ वृक्ष नोंदवही  </h4>
+                      <h4 className="card-title mb-0"> नमुना ५ - दैनिक रोकड वही </h4>
                     </Col>
                     <Col lg={4} className="text-end">
-                      <Button color="primary" onClick={() => navigate("/नमुना-३३")}> 
+                      <Button color="primary" onClick={() => navigate("/नमुना-५")}> 
                         नवीन माहिती प्रविष्ट करा
                       </Button>   
                     </Col>
@@ -356,9 +366,7 @@ const Report33 = () => {
                   <div className="table-responsive">
                     <div id="buttons-datatables_wrapper" className="dataTables_wrapper dt-bootstrap5 no-footer">
                       <div style={{ display: "flex", justifyContent: "flex-end", alignItems: "center", marginBottom: "-31px" }}>
-                        <label htmlFor="search" className="me-2 mb-0">
-                          शोधा:
-                        </label>
+                        
                         <input
                           type="search"
                           id="search"
@@ -374,39 +382,48 @@ const Report33 = () => {
                         <table id="buttons-datatables" className="display table table-bordered dataTable no-footer" ref={tableRef}>
                           <thead>
                             <tr>
-                              <th>अनुक्रमांक</th> {/* Serial Number Column */}
+                              <th>आयडी</th> {/* Serial Number Column */}
                               <th>ॲक्शन</th>
-                              <th>नाव</th>
-                              <th>वृक्ष क्रमांक Cते C</th>
-                              <th>वृक्ष प्रकार</th>
-                              <th>वृक्ष जोपासनेधी जबाबदारी</th>
-                              <th>दिनांक</th>
+                              <th> पावती क्रमांक</th>
+                              <th>कोणाकडून मिळाली ते</th>
+                              <th> जमा रकमे संबंधी तपशील</th>
+                              <th> रोख रक्कम रुपये</th>
+                              <th>धनादेश चेक रुपये</th>
+                              <th>धनादेश बँकेत जमा केल्याचा दिनांक</th>
+                              <th> रोख रक्कम जमा केल्याचा दिनांक</th>
                               <th>शेरा</th>
+                              <th>वर्ष</th>
+
                             </tr>
                           </thead>
                           <tbody>
                             {dataList.map((data, index) => (
-                              <tr key={index}>
-                                <td>{index + 1}</td>
+                              <tr key={data.id}>
+                                <td>{data.id}</td>
                                 <td>
                                   <div className="d-flex gap-2">
-                                    <button className="btn btn-sm btn-primary edit-item-btn" onClick={() => navigate("/नमुना-३३-अपडेट", { state: data })}>
+                                    <button className="btn btn-sm btn-primary edit-item-btn" onClick={() => navigate("/नमुना-५-अपडेट", { state: data })}>
                                       अद्यतन करा
                                     </button>
-                                    <button className="btn btn-sm btn-danger remove-item-btn" onClick={() => handleDelete(data.id)}>
+                                    <button className="btn btn-sm btn-danger remove-item-btn" onClick={() => handleDelete(data.id)}> 
                                       काढून टाका
                                     </button>
-                                    <button className="btn btn-sm btn-primary remove-item-btn" onClick={() => navigate("/नमुना-३३-पाहणी-पृष्ठ", { state: data })}>
+                                    <button className="btn btn-sm btn-primary remove-item-btn" onClick={() => navigate("/नमुना-५-पाहणी-पृष्ठ", { state: data })}>
                                       डेटा पाहा
                                     </button>
                                   </div>
                                 </td>
-                                <td>{data.naav}</td>
-                                <td>{data.vrukshkrmank}</td>
-                                <td>{data.vrukshprakar}</td>
-                                <td>{data.vrukshjopasnechijababdari}</td>
-                                <td>{data.date}</td>
-                                <td>{data.shera}</td> 
+                                <td>{data. pavtiKramank}</td>
+                                <td>{data.konakdunMilali}</td>
+                                <td>{data.jamaRakkamTapshil}</td>
+                                <td>{data.rokhRakkam}</td>
+                                <td>{data.dhanadeshRakkam}</td>
+                                <td>{data.dhanadeshKinvaRakkamJamaDinank}</td> 
+                                <td>{data.dhanadeshVatvilyachaDinank}</td> 
+                                <td>{data.shera}</td>
+                               
+                                <td>{data.year}</td>
+                          
                               </tr>
                             ))}
                           </tbody>
@@ -428,4 +445,4 @@ const Report33 = () => {
   );
 };
 
-export default Report33;
+export default Namuna5CReport;

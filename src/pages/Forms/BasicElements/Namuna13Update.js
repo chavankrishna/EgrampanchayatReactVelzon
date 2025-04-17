@@ -5,9 +5,9 @@ import { Input, Button, Card, CardBody, Col, Container, Label, Row, Form, ModalF
 import UiContent from "../../../Components/Common/UiContent";
 import BreadCrumb from "../../../Components/Common/BreadCrumb";
 import PreviewCardHeader from "../../../Components/Common/PreviewCardHeader";
-import { setSessionMessage, getSessionMessage } from "../BasicElements/finalconfig"; // Import session management functions
+import { setSessionMessage, getSessionMessage } from "./finalconfig"; // Import session management functions
 
-const Namuna13_Update = () => {
+const Namuna13Update = () => {
   const { state } = useLocation(); // Access the passed record data from the previous page
   const navigate = useNavigate();
 
@@ -340,4 +340,4 @@ const Namuna13_Update = () => {
   );
 };
 
-export default Namuna13_Update;
+export default Namuna13Update;

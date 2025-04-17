@@ -171,14 +171,21 @@ const Update33 = () => {
   ];
   return (
     <React.Fragment>
-      <style>
-        {`
-                    .page-title-right {
-                        margin-left: 75%;
-                    }
-                `}
-                
-      </style>
+       <style>
+                      {`
+                      .page-title-right {
+                          display: flex;
+                          justify-content: flex-end;
+                          width: 100%;
+                      }
+      
+                      @media (max-width: 768px) {
+                          .page-title-right {
+                          justify-content: center; /* Center align on smaller screens */
+                          }
+                      }
+                      `}
+              </style>
       <UiContent />
       <div className="page-content">
         <Container fluid>

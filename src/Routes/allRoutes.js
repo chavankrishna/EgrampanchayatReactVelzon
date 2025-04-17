@@ -9,7 +9,7 @@ import NamunaSeventeen from "../pages/Forms/BasicElements/NamunaSeventeen";
 import NamunaEighteen from "../pages/Forms/BasicElements/NamunaEighteen";
 import Namuna06 from "../pages/Forms/BasicElements/Namuna06";
 import Gaurireport from "../pages/Forms/BasicElements/Gaurireport";
-import Namuna06Update from "../pages/Forms/BasicElements/Namuna06Update";
+//import Namuna06Update from "../pages/Forms/BasicElements/Namuna06Update";
 import UpdatePage from "../pages/Forms/BasicElements/UpdatePage";
 import ViewDetails from "../pages/Forms/BasicElements/ViewDetails";
 
@@ -288,9 +288,9 @@ import Report17 from "../pages/Forms/BasicElements/Report17";
 import View17 from "../pages/Forms/BasicElements/View17";
 import Update17 from "../pages/Forms/BasicElements/Update17";
 import Namuna13 from "../pages/Forms/BasicElements/Namuna13";
-import ReportPage_13 from "../pages/Forms/BasicElements/Report13";
-import Namuna13_view from "../pages/Forms/BasicElements/View13";
-import Namuna13_Update from "../pages/Forms/BasicElements/Update13";
+//import ReportPage_13 from "../pages/Forms/BasicElements/Report13";
+//import Namuna13_view from "../pages/Forms/BasicElements/Namuna13View";
+import Namuna13_Update from "../pages/Forms/BasicElements/Namuna13Update";
 import Report22 from "../pages/Forms/BasicElements/Report22";
 import Update22 from "../pages/Forms/BasicElements/Update22";
 import View22 from "../pages/Forms/BasicElements/View22";
@@ -312,10 +312,10 @@ import Namuna18Update2 from "../pages/Forms/BasicElements/Namuna18Update2";
 import Namuna18Form2 from "../pages/Forms/BasicElements/Namuna18Form2";
 import Namuna18View2 from "../pages/Forms/BasicElements/Namuna18View2";
 import Namuna18Report2 from "../pages/Forms/BasicElements/Namuna18Report2";
-import Namuna06Report2 from "../pages/Forms/BasicElements/Namuna06Report2";
+//import Namuna06Report2 from "../pages/Forms/BasicElements/Namuna06Report";
 import Namuna8 from "../pages/Forms/BasicElements/NamunaEight";
 import Namuna20 from "../pages/Forms/BasicElements/NamunaTwenty";
-import Namuna11 from "../pages/Forms/BasicElements/NamunaEleven";
+import Namuna11 from "../pages/Forms/BasicElements/Namuna11";
 import Namuna14 from "../pages/Forms/BasicElements/NamunaFourteen";
 import Namuna20Update from "../pages/Forms/BasicElements/Namuna20Update";
 import Namuna20Report2 from "../pages/Forms/BasicElements/Namuna20Report2";
@@ -323,7 +323,7 @@ import Namuna8View from "../pages/Forms/BasicElements/Namuna8View";
 import Namuna8Update from "../pages/Forms/BasicElements/Namuna8Update";
 import Namuna8Report2 from "../pages/Forms/BasicElements/Namuna8Report2";
 import Namuna11Update from "../pages/Forms/BasicElements/Namuna11Update";
-import Namuna11Report2 from "../pages/Forms/BasicElements/Namuna11Report2";
+import Namuna11Report2 from "../pages/Forms/BasicElements/Namuna11Report";
 import Namuna11View from "../pages/Forms/BasicElements/Namuna11View";
 import Namuna14Update from "../pages/Forms/BasicElements/Namuna14Update";
 import Namuna14Report2 from "../pages/Forms/BasicElements/Namuna14Report2";
@@ -337,7 +337,7 @@ import View25 from "../pages/Forms/BasicElements/View25";
 import Update25 from "../pages/Forms/BasicElements/Update25";
 import Form from "../pages/Forms/BasicElements/Form ";
 import ReportUser from "../pages/Forms/BasicElements/ReportUser";
-import Namuna09 from "../pages/Forms/BasicElements/Namuna09";
+import Namuna09 from "../pages/Forms/BasicElements/Namuna9";
 // import Namuna09_update from "../pages/Forms/BasicElements/namuna09_update";
 import Namuna09_view from "../pages/Forms/BasicElements/Namuna09_view";
 import ReportPage_09 from "../pages/Forms/BasicElements/ReportPage_09";
@@ -354,6 +354,28 @@ import Namuna14Mudrank from "../pages/Forms/BasicElements/Namuna14Mudrank";
 import Namuna14MudrankReport from "../pages/Forms/BasicElements/Namuna14MudrankReport";
 import Namuna14MudrankUpdate from "../pages/Forms/BasicElements/Namuna14MudrankUpdate";
 import Namuna14MudrankView from "../pages/Forms/BasicElements/Namuna14MudrankView";
+import Namuna2 from "../pages/Forms/BasicElements/Namuna2";
+import Namuna2Report from "../pages/Forms/BasicElements/Namuna2Report"; 
+import Namuna2View from "../pages/Forms/BasicElements/Namuna2View";
+import Namuna2Update from "../pages/Forms/BasicElements/Namuna2Update";
+import Namuna06Report from "../pages/Forms/BasicElements/Namuna06Report";
+import Namuna06View from "../pages/Forms/BasicElements/Namuna06View"
+import Namuna06Update from "../pages/Forms/BasicElements/Namuna06Update";
+import Namana5C from "../pages/Forms/BasicElements/Namuna5C"; 
+import Namuna5CReport from "../pages/Forms/BasicElements/Namuna5CReport";
+import Namana5CUpdate from "../pages/Forms/BasicElements/Namuna5CUpdate";
+import Namuna5CView from "../pages/Forms/BasicElements/Namuna5CView";
+import Namuna9 from "../pages/Forms/BasicElements/Namuna9";
+import Namuna9Report from "../pages/Forms/BasicElements/Namuna9Report";
+import Namuna11Report from "../pages/Forms/BasicElements/Namuna11Report";
+import Namuna13Report from "../pages/Forms/BasicElements/Namuna13Report";
+import Namuna13View from "../pages/Forms/BasicElements/Namuna13View";
+import Namuna13Update from "../pages/Forms/BasicElements/Namuna13Update";
+
+
+
+
+//import Namuna06Update from "../pages/Forms/BasicElements/Namuna06Update"
 
 //import Nanuna10Report1 from "../pages/Forms/BasicElements/Namuna10Report1" 
 
@@ -409,16 +431,50 @@ const authProtectedRoutes = [
   { path: "/gaurireport", component: <Gaurireport /> },
 
   { path: "/report", component: <Report /> },
-  { path: "/नमुना-०६-पाहणी-पृष्ठ", component: <ViewDetails /> },
 
   { path: "/demo", component: <Demo /> },
   { path: "/demo2", component: <Demo2 /> },
   { path: "/demo3", component: <Demo3 /> },
+
+
+  //----------------------------------------------------------------------------
+  //krishna
+  // Namuna2 
+  {path: "/नमुना-२", component: <Namuna2 />},
+  {path: "/नमुना-२-अहवाल", component: <Namuna2Report />},
+  {path: "/नमुना-२-पाहणी-पृष्ठ", component: <Namuna2View />},
+  {path: "/नमुना-२-अपडेट", component: <Namuna2Update />},
+
+  //namuna 5 
+  { path: "/नमुना-५", component: <Namana5C /> },
+  { path: "/नमुना-५-अहवाल", component:<Namuna5CReport /> },
+  { path: "/नमुना-५-अपडेट", component:<Namana5CUpdate /> },
+  { path: "/नमुना-५-पाहणी-पृष्ठ", component:<Namuna5CView /> }, 
+
+//Namuna 6
+  { path: "/नमुना-६", component: <Namuna06 /> },
+  { path: "/नमुना-६-अहवाल", component: <Namuna06Report /> },
+  { path: "/नमुना-६-अपडेट", component: <Namuna06Update /> },
+  { path: "/नमुना-६-पाहणी-पृष्ठ", component: <Namuna06View /> },
+
+//Namuna 9
+ { path: "/नमुना-९", component: <Namuna9 /> },
+ { path: "/नमुना-९-अहवाल", component: <Namuna9Report /> },
+
+
+
+ //11
+ { path: "/नमुना-११", component: <Namuna11 /> },
+ { path: "/नमुना-११-अपडेट", component: <Namuna11Update /> },
+ { path: "/नमुना-११-अहवाल", component: <Namuna11Report /> },
+ { path: "/नमुना-११-पाहणी-पृष्ठ", component: <Namuna11View /> },
+
+
   //-----------------------------------------------------------------------------------------------------------
   //Vishal
   //namuna23
   { path: "/नमुना-२३", component: <Namuna23 /> },
-  { path: "/नमुना-२३-अहवाल", component: <Report23 /> },
+  { path: "/नमुना-२३-अहवाल", component: <Report23 /> }, 
   { path: "/नमुना-२३-पाहणी-पृष्ठ", component: <View23 /> },
   { path: "/नमुना-२३-अपडेट", component: <Update23 /> },
   
@@ -491,24 +547,23 @@ const authProtectedRoutes = [
   { path: "/नमुना-२५-पाहणी-पृष्ठ", component: <View25 /> },
   { path: "/नमुना-२५-अपडेट", component: <Update25 /> },
 
+
   //-----------------------------------------------------------------------------------------------------------------------
-  //Komal Mam
+  //
   //13
   { path: "/नमुना-१३", component: <Namuna13 /> },
-  { path: "/नमुना-१३-अहवाल", component: <ReportPage_13 /> },
-  { path: "/नमुना-१३-पाहणी-पृष्ठ", component: <Namuna13_view /> },
-  { path: "/नमुना-१३-अपडेट", component: <Namuna13_Update /> },
+  { path: "/नमुना-१३-अहवाल", component: <Namuna13Report /> },
+  { path: "/नमुना-१३-पाहणी-पृष्ठ", component: <Namuna13View /> },
+  { path: "/नमुना-१३-अपडेट", component: <Namuna13Update /> }, 
+  
   //09
-  { path: "/Namuna09_view", component: <Namuna09_view /> },
-  { path: "/namuna09", component: <Namuna09 /> },
-  { path: "/Report09", component: <ReportPage_09 /> },
+  //{ path: "/Namuna09_view", component: <Namuna09_view /> },
+  //{ path: "/namuna09", component: <Namuna09 /> },
+ // { path: "/Report09", component: <ReportPage_09 /> },
   // { path: "/Namuna09_update", component: <Namuna09_update /> },
 
   //-----------------------------------------------------------------------------------------------
-  { path: "/नमुना-०६", component: <Namuna06 /> },
-  { path: "/नमुना-०६-अहवाल", component: <Namuna06Report2 /> },
-  { path: "/नमुना-०६-अपडेट", component: <Namuna06Update /> },
-  { path: "/नमुना-०६-पाहणी-पृष्ठ", component: <ViewDetails /> },
+  
   // Form 21
   { path: "/form-details", component: <Form21 /> },
   { path: "/report-details", component: <Report21 /> },
@@ -544,24 +599,16 @@ const authProtectedRoutes = [
   // 10 
   // krishna 
   { path: "/namuna10" , component:<Namuna10 /> } , 
+  
   { path: "/namuna10report" , component:<Namuna10Report /> } , 
   { path: "/namuna10update" , component:<Namuna10Update /> } ,    
+  
   { path: "/namuna10view" , component:<Namuna10View /> } ,
   { path: "/namuna10delete" , component:<Namuna10Update /> } , 
 
   { path: "/namuna10_1" , component:<Namuna10_1 /> } , 
   { path: "/namuna10report1" , component:<Namuna10Report1 /> } , 
   { path: "/namuna10update1" , component:<Namuna10Update1 /> } , 
-
-
-  
-  
-  
-  //11
-  { path: "/नमुना-११", component: <Namuna11 /> },
-  { path: "/नमुना-११-अपडेट", component: <Namuna11Update /> },
-  { path: "/नमुना-११-अहवाल", component: <Namuna11Report2 /> },
-  { path: "/नमुना-११-पाहणी-पृष्ठ", component: <Namuna11View /> },
  
  
   //14

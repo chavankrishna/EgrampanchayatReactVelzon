@@ -76,11 +76,11 @@ const Navdata = () => {
           parentId: "authentication",
           stateVariables: isProfile,
           childItems: [
-            { id: 1, label: "पुनर्विनियोजन व नियत वाटप", link: "/auth-signin-basic" },
+            { id: 1, label: "पुनर्विनियोजन व नियत वाटप", link: "/नमुना-२-अहवाल" },   // namuna 2
             { id: 2, label: "ग्रामपंचायत जमा खर्च विवरण", link: "/auth-signin-cover" },
             { id: 3, label: "ग्रामपंचायतीची मत्ता दायत्वे", link: "/auth-signin-basic" },
             { id: 4, label: "सामान्य रोकड वही", link: "/NamunaFive_Report" },
-            { id: 5, label: "दैनिक रोकड वही", link: "/NamunaFive_Reports" },
+            { id: 5, label: "दैनिक रोकड वही", link: "/नमुना-५-अहवाल" }, 
 
             // Added third item
           ],
@@ -97,11 +97,11 @@ const Navdata = () => {
           parentId: "authentication",
           stateVariables: isProfile,
           childItems: [
-            { id: 6, label: "जमा रकमांची वर्गिकृत नोंदवही(मासिक)", link: "/नमुना-०६-अहवाल" },
+            { id: 6, label: "जमा रकमांची वर्गिकृत नोंदवही(मासिक)", link: "/नमुना-६-अहवाल" },
             { id: 7, label: "कर आकरणी नोंदवही", link: "/auth-signin-cover" },
             { id: 8, label: "कर मागणी नोंदवही", link: "/नमुना-८-अहवाल" },
-            { id: 9, label: "कराची मागणी पावती", link: "/auth-signin-cover" },
-            { id: 10, label: "कर व फी बाबत पावती", link: "/namuna10" }, // Added third item
+            { id: 9, label: "कराची मागणी पावती", link: "/नमुना-९-अहवाल" },
+            { id: 10, label: "कर व फी बाबत पावती", link: "/namuna10report1" }, // Added third item
           ],
         },
 

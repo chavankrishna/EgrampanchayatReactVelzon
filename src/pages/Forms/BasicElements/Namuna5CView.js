@@ -4,7 +4,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { Button, Container, Row, Col, Table, Card, CardBody } from "reactstrap";
 import BreadCrumb from "../../../Components/Common/BreadCrumb";
 
-const View33 = () => {
+const Namuna5CView = () => { 
   const { state } = useLocation(); // Access the passed record data from the previous page
   const navigate = useNavigate();
   const [record, setRecord] = useState(state || {});
@@ -27,7 +27,7 @@ const View33 = () => {
             return;
           }
           const response = await axios.post(
-            `http://localhost:8080/Namuna33VrukshNondViha/get_by_id/${record.id}`,
+            "localhost:8080/Namuna5C_DainikRokadVahi/get_by_id/${record.id}",
             {}, // Request body (empty in this case)
             {
               headers: {
@@ -46,11 +46,11 @@ const View33 = () => {
     }
   }, [state, record.id]); // Dependency array
   const breadcrumbTitle = "डेटा पहा"; // This could be dynamic
-  const breadcrumbPageTitle = "डॅशबोर्ड / अहवाल-३३ "; // Dynamic page title
+  const breadcrumbPageTitle = "डॅशबोर्ड / नमुना ५- अहवाल "; // Dynamic page title
 
   const breadcrumbPaths = [
     "/dashboard", // Path for "डॅशबोर्ड"
-    "/नमुना-३३-अहवाल",
+    "/नमुना-५-अहवाल",
   ];
   return (
     <React.Fragment>
@@ -86,30 +86,43 @@ const View33 = () => {
                   </Row>
                   <Table bordered responsive className="table-custom">
                     <tbody>
-                      <tr>
-                        <th>नाव</th>
-                        <td>{record.naav}</td>
-                      </tr>
-                      <tr>
-                        <th>वृक्ष क्रमांक Cते C</th>
-                        <td>{record.vrukshkrmank}</td>
-                      </tr>
-                      <tr>
-                        <th>वृक्ष प्रकार</th>
-                        <td>{record.vrukshprakar}</td>
-                      </tr>
-                      <tr>
-                        <th>वृक्ष जोपासनेधी जबाबदारी</th>
-                        <td>{record.vrukshjopasnechijababdari}</td>
-                      </tr>
-                      <tr>
-                        <th>दिनांक</th>
-                        <td>{record.date}</td>
-                      </tr>
-                      <tr>
+                    <tr>
+                        <th> पावती क्रमांक</th>
+                        <td>{record.pavtiKramank}</td>
+                    </tr>
+                    <tr>
+                        <th> कोणाकडून मिळाली ते</th>
+                        <td>{record.konakdunMilali}</td>
+                    </tr>
+                    <tr>
+                        <th>जमा रकमे संबंधी तपशील</th>
+                        <td>{record.jamaRakkamTapshil}</td>
+                    </tr>
+                    <tr>
+                        <th> रोख रक्कम रुपये</th>
+                        <td>{record.rokhRakkam}</td>  {/* record.rokhRakkama */}
+                    </tr>
+                    <tr>
+                        <th>  धनादेश चेक रुपये</th>
+                        <td>{record.dhanadeshRakkam}</td> 
+                    </tr>
+                        <tr>
+                        <th> धनादेश बँकेत जमा केल्याचा दिनांक</th>
+                        <td>{record.dhanadeshKinvaRakkamJamaDinank}</td>
+                        </tr>
+                        <tr>
+                        <th> रोख रक्कम जमा केल्याचा दिनांक</th>
+                        <td>{record.dhanadeshVatvilyachaDinank}</td>
+                        </tr>
+                        
+                        <tr>
                         <th>शेरा</th>
                         <td>{record.shera}</td>
-                      </tr>
+                        </tr>
+                        <tr>
+                        <th> वर्ष</th>
+                        <td>{record.year}</td>
+                        </tr>
                     </tbody>
                   </Table>
                 </CardBody>
@@ -122,4 +135,4 @@ const View33 = () => {
   );
 };
 
-export default View33;
+export default Namuna5CView;

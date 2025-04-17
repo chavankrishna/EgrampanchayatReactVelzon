@@ -372,14 +372,14 @@ const Form24 = () => {
                   <div className="col-lg-12" style={{ marginTop: "20px" }}>
                     <div className="text-start">
                       <Button color="success" onClick={handleSubmit} style={{ marginRight: "10px" }}>
-                        जतन करा
-                      </Button>
+                        जतन करा 
+                      </Button>   
                       <Button color="success" onClick={handleSaveAndAddNew} style={{ marginRight: "10px" }}>
-                        जतन करून नवीन माहिती भरा
-                      </Button>
+                        जतन करून नवीन माहिती भरा 
+                      </Button> 
                       <Button color="danger" onClick={() => (window.location.href = "/form-details")} style={{ marginRight: "10px" }}>
-                        रद्द करा
-                      </Button>
+                        रद्द करा 
+                      </Button> 
                       <Button color="primary" onClick={handleReset}>
                         रिसेट करा
                       </Button>

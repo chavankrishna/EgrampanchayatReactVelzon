@@ -16,7 +16,7 @@ import "./Report23.css";
 import { setSessionMessage, getSessionMessage } from "../BasicElements/finalconfig"; // Import session management functions
 import BreadCrumb from "../../../Components/Common/BreadCrumb";
 
-const Report33 = () => {
+const Namuna2Report = () => {
   const [dataList, setDataList] = useState([]);
   const [modal_list, setModalList] = useState(false);
   const [modal_delete, setModalDelete] = useState(false);
@@ -27,12 +27,18 @@ const Report33 = () => {
     grampanchayatName: "",
     employeeId: "",
     employeeName: "",
-    naav: "",
-    vrukshkrmank: "",
-    vrukshprakar: "",
-    vrukshjopasnechijababdari: "",
+    jamaRakmecheMukhyaShirshak: "",
+    manjurArthsankalp: "",
+    sudharitAndaz: "",
+    sudharitAdhikVaja: "",
+    kharchachePramukhShirsh: "",
+    manjurRakkam: "",
+    kharchachaSudharitAndaz: "",
+    kharchachaAdhikVaja: "",
     shera: "",
-    date: "",
+    month: "",
+    year: "",
+    dnyapanRupees: "",
   });
 
   const navigate = useNavigate();
@@ -65,7 +71,7 @@ const Report33 = () => {
         }
 
         const response = await axios.post(
-          "http://localhost:8080/Namuna33VrukshNondViha/getall",
+          "http://localhost:8080/Namuna02PunarniyojanVaNiyatVatap/getall",
           {},
           {
             headers: {
@@ -191,8 +197,8 @@ const Report33 = () => {
                                       <div class="header-row">
                                           <div class="left">महाराष्ट्र ग्रामपंचायत लेखा संहिता - २०११</div>
                                       </div>
-                                      <h1>नमुना ३३ वृक्ष नोंदवही</h1> 
-                                      <div class="left" style="margin-top: -38px;">नमूना क्र. ३३</div>
+                                      <h1>नमुना २ - पुनर्विनियोजन व नियत वाटप यांचे विवरणपत्र नोंदवही</h1> 
+                                      <div class="left" style="margin-top: -38px;">नमूना क्र. २</div>
                                       <div class="header-row">
                                           <div class="left">नियम २५(७) पहा</div>
                                       </div>
@@ -257,7 +263,7 @@ const Report33 = () => {
 
       // Send the delete request with token in headers
       const response = await axios.post(
-        `http://localhost:8080/Namuna33VrukshNondViha/delete_by_id/${id}`,
+        `http://localhost:8080/Namuna02PunarniyojanVaNiyatVatap/delete_by_id/${id}`,
         {},
         {
           headers: {
@@ -274,7 +280,7 @@ const Report33 = () => {
       sessionStorage.setItem("sessionMessage", successMessage); // Store the success message
 
       // Redirect to the report page
-      window.location.href = "/नमुना-३३-अहवाल";
+      window.location.href = "/नमुना-२-अहवाल";
     } catch (error) {
       console.error("Error deleting data:", error);
 
@@ -306,18 +312,21 @@ const Report33 = () => {
     const dataTable = $("#buttons-datatables").DataTable();
     dataTable.search(searchQuery).draw(); // Trigger search in DataTable
   };
-  const breadcrumbTitle = "अहवाल-३३"; // This could be dynamic
-  const breadcrumbPageTitle = "डॅशबोर्ड / नमुना ३३ वृक्ष नोंदवही "; // Dynamic page title
+
+
+  const breadcrumbTitle = "अहवाल-२"; // This could be dynamic
+  const breadcrumbPageTitle = "डॅशबोर्ड / नमुना २ - पुनर्विनियोजन व नियत वाटप यांचे विवरणपत्र नोंदवही  "; // Dynamic page title
 
   // Define paths corresponding to each breadcrumb part
   const breadcrumbPaths = [
     "/dashboard", // Path for "डॅशबोर्ड"
-    "/नमुना-३३", // Path for "२५ - गुंतवणूक वही"
+    "/नमुना-२", // Path for "२५ - गुंतवणूक वही"
   ];
+  
   return (
     <React.Fragment>
       <style>
-                {`
+            {`
                 .page-title-right {
                     display: flex;
                     justify-content: flex-end;
@@ -329,7 +338,7 @@ const Report33 = () => {
                     justify-content: center; /* Center align on smaller screens */
                     }
                 }
-                `}
+            `}
         </style> 
       <div className="page-content">
         <Container fluid>
@@ -340,10 +349,10 @@ const Report33 = () => {
                 <CardHeader>
                   <Row>
                     <Col lg={8}>
-                      <h4 className="card-title mb-0"> नमुना ३३ वृक्ष नोंदवही  </h4>
+                      <h4 className="card-title mb-0"> नमुना २ - पुनर्विनियोजन व नियत वाटप यांचे विवरणपत्र नोंदवही  </h4>
                     </Col>
                     <Col lg={4} className="text-end">
-                      <Button color="primary" onClick={() => navigate("/नमुना-३३")}> 
+                      <Button color="primary" onClick={() => navigate("/नमुना-२")}> 
                         नवीन माहिती प्रविष्ट करा
                       </Button>   
                     </Col>
@@ -356,9 +365,7 @@ const Report33 = () => {
                   <div className="table-responsive">
                     <div id="buttons-datatables_wrapper" className="dataTables_wrapper dt-bootstrap5 no-footer">
                       <div style={{ display: "flex", justifyContent: "flex-end", alignItems: "center", marginBottom: "-31px" }}>
-                        <label htmlFor="search" className="me-2 mb-0">
-                          शोधा:
-                        </label>
+                        
                         <input
                           type="search"
                           id="search"
@@ -374,39 +381,51 @@ const Report33 = () => {
                         <table id="buttons-datatables" className="display table table-bordered dataTable no-footer" ref={tableRef}>
                           <thead>
                             <tr>
-                              <th>अनुक्रमांक</th> {/* Serial Number Column */}
+                              <th>आयडी</th> {/* Serial Number Column */}
                               <th>ॲक्शन</th>
-                              <th>नाव</th>
-                              <th>वृक्ष क्रमांक Cते C</th>
-                              <th>वृक्ष प्रकार</th>
-                              <th>वृक्ष जोपासनेधी जबाबदारी</th>
-                              <th>दिनांक</th>
+                              <th>जमा रकमेचे मुख्य शिर्षक</th>
+                              <th>मंजूर अर्थसंकल्प</th>
+                              <th>सुधारित अंदाज</th>
+                              <th>सुधारित अधिक(+) किंवा वजा(-)</th>
+                              <th>खर्चाचे प्रमुख शिर्षक</th>
+                              <th>मंजूर रक्कम</th>
+                              <th>खर्चाचा सुधारीत अंदाज</th>
+                              <th>खर्चाचा अधिक(+) किंवा वजा(-)</th>
                               <th>शेरा</th>
+                              <th>महिना</th>
+                              <th>वर्ष</th>
+                              <th>ज्ञापन रुपये</th>
                             </tr>
                           </thead>
                           <tbody>
                             {dataList.map((data, index) => (
-                              <tr key={index}>
-                                <td>{index + 1}</td>
+                              <tr key={data.id}>
+                                <td>{data.id}</td>
                                 <td>
                                   <div className="d-flex gap-2">
-                                    <button className="btn btn-sm btn-primary edit-item-btn" onClick={() => navigate("/नमुना-३३-अपडेट", { state: data })}>
+                                    <button className="btn btn-sm btn-primary edit-item-btn" onClick={() => navigate("/नमुना-२-अपडेट", { state: data })}>
                                       अद्यतन करा
                                     </button>
-                                    <button className="btn btn-sm btn-danger remove-item-btn" onClick={() => handleDelete(data.id)}>
+                                    <button className="btn btn-sm btn-danger remove-item-btn" onClick={() => handleDelete(data.id)}> 
                                       काढून टाका
                                     </button>
-                                    <button className="btn btn-sm btn-primary remove-item-btn" onClick={() => navigate("/नमुना-३३-पाहणी-पृष्ठ", { state: data })}>
+                                    <button className="btn btn-sm btn-primary remove-item-btn" onClick={() => navigate("/नमुना-२-पाहणी-पृष्ठ", { state: data })}>
                                       डेटा पाहा
                                     </button>
                                   </div>
                                 </td>
-                                <td>{data.naav}</td>
-                                <td>{data.vrukshkrmank}</td>
-                                <td>{data.vrukshprakar}</td>
-                                <td>{data.vrukshjopasnechijababdari}</td>
-                                <td>{data.date}</td>
-                                <td>{data.shera}</td> 
+                                <td>{data.jamaRakmecheMukhyaShirshak}</td>
+                                <td>{data.manjurArthsankalp}</td>
+                                <td>{data.sudharitAndaz}</td>
+                                <td>{data.sudharitAdhikVaja}</td> 
+                                <td>{data.kharchachePramukhShirsh}</td>
+                                <td>{data.manjurRakkam}</td> 
+                                <td>{data.kharchachaSudharitAndaz}</td>
+                                <td>{data.kharchachaAdhikVaja}</td> 
+                                <td>{data.shera}</td>
+                                <td>{data.month}</td>
+                                <td>{data.year}</td>
+                                <td>{data.dnyapanRupees}</td>
                               </tr>
                             ))}
                           </tbody>
@@ -428,4 +447,4 @@ const Report33 = () => {
   );
 };
 
-export default Report33;
+export default Namuna2Report;

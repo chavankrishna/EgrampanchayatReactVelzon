@@ -33,6 +33,15 @@ const Namuna33 = () => {
   const [sessionMessage, setSessionMessage] = useState("");
 
   const [dataList, setDataList] = useState([]);
+
+
+  const [error1, setError1] = useState("");
+  const [error2, setError2] = useState("");
+  const [error3, setError3] = useState("");
+  const [error4, setError4] = useState("");
+  const [error5, setError5] = useState("");
+  const [error6, setError6] = useState("");
+
   // Get session message on page load
   useEffect(() => {
     const { type, message } = getSessionMessage();
@@ -65,7 +74,92 @@ const Namuna33 = () => {
 
   const handleInputChange = (e) => {
     const { id, value } = e.target;
-    setFormData({ ...formData, [id]: value });
+    //setFormData({ ...formData, [id]: value });
+    setFormData((prevState) => ({
+      ...prevState,
+      [id]: value,
+    }));
+
+    const regex = /^[0-9\u0966-\u096F]+$/; // Allows Hindi, Marathi & English numbers
+    const regex1 = /^[\u0900-\u097F A-Za-z\s]+$/; // Allows Hindi, Marathi & English letters and spaces 
+    const regex2 = /^[0-9\u0966-\u096F]+-[0-9\u0966-\u096F]+$/;
+
+
+    if(id === "naav")
+    {
+      if(value ==="" || regex1.test(value))
+      {
+        setError1("");
+      }
+      else
+      {
+        setError1("कृपया योग्य नाव भरा");
+      }
+    }
+    else if(id === "vrukshkrmank")
+    {
+      if(value ==="" || regex2.test(value))
+      {
+        setError2("");
+      }
+      else
+      {
+        setError2("कृपया योग्य वृक्ष क्रमांक भरा (range like 1-10)");
+      }
+    }
+    else if(id === "vrukshprakar")
+    {
+      if(value ==="" || regex1.test(value))
+      {
+        setError3("");
+      }
+      else
+      {
+        setError3("कृपया योग्य वृक्ष प्रकार भरा");
+      }
+    }
+    else if(id === "vrukshjopasnechijababdari")
+    {
+      if(value ==="" || regex1.test(value))
+      {
+        setError4("");
+      }
+      else
+      {
+        setError4("कृपया योग्य वृक्ष जोपासनेधी जबाबदारी भरा");
+      }
+    }
+    else if(id === "shera")
+    {
+      if(value ==="" || regex1.test(value))
+      {
+        setError5("");
+      }
+      else
+      {
+        setError5("कृपया योग्य शेरा भरा");
+      }
+    }
+    else if(id === "date")
+    {
+      if(value ==="")
+      {
+        setError6("")
+      }
+      else
+      {
+        const dateObj = new Date(value);
+        const currentDate = new Date();
+        if (dateObj > currentDate) {
+          setError6("कृपया वैध दिनांक भरा (भविष्य दिनांक नाही)");
+        } else {
+          setError6("");
+        }
+      }
+    }
+
+
+
   };
 
   // Convert date format from dd/mm/yyyy to yyyy-mm-dd
@@ -222,13 +316,20 @@ const Namuna33 = () => {
   return (
     <React.Fragment>
       <style>
-        {`
-                    .page-title-right {
-                        margin-left: 77%;
-                    }
-                `}
-                
-      </style>
+                      {`
+                      .page-title-right {
+                          display: flex;
+                          justify-content: flex-end;
+                          width: 100%;
+                      }
+      
+                      @media (max-width: 768px) {
+                          .page-title-right {
+                          justify-content: center; /* Center align on smaller screens */
+                          }
+                      }
+                      `}
+              </style>
       <UiContent />
       <div className="page-content">
         <Container fluid>
@@ -248,14 +349,16 @@ const Namuna33 = () => {
                             नाव
                           </Label>
                           <Input type="text" className="form-control" id="naav" value={formData.naav} onChange={handleInputChange} />
+                          {error1 && <div className="text-danger">{error1}</div>}
                         </div>
                       </Col>
                       <Col xxl={3} md={3}>
                         <div>
                           <Label htmlFor="vrukshkrmank" className="form-label">
-                            वृक्ष क्रमांक Cते C
+                            वृक्ष क्रमांक Cते C ( ex. 1-10)
                           </Label>
-                          <Input type="text" className="form-control" id="vrukshkrmank" value={formData.vrukshkrmank} onChange={handleInputChange} />
+                          <Input type="text" className="form-control" id="vrukshkrmank" value={formData.vrukshkrmank} onChange={handleInputChange} /> 
+                          { error2 && <div className="text-danger"> {error2} </div> }
                         </div>
                       </Col>
                       <Col xxl={3} md={3}>
@@ -264,6 +367,7 @@ const Namuna33 = () => {
                             वृक्ष प्रकार
                           </Label>
                           <Input type="text" className="form-control" id="vrukshprakar" value={formData.vrukshprakar} onChange={handleInputChange} />
+                          {error3 && <div className="text-danger">{error3}</div>}
                         </div>
                       </Col>
                       <Col xxl={3} md={3}>
@@ -272,6 +376,7 @@ const Namuna33 = () => {
                             वृक्ष जोपासनेधी जबाबदारी
                           </Label>
                           <Input type="text" className="form-control" id="vrukshjopasnechijababdari" value={formData.vrukshjopasnechijababdari} onChange={handleInputChange} />
+                          {error4 && <div className="text-danger">{error4}</div>}
                         </div>
                       </Col>
                       <Col xxl={3} md={3}>
@@ -280,6 +385,7 @@ const Namuna33 = () => {
                             दिनांक
                           </Label>
                           <Input type="date" className="form-control" id="date" value={formData.date} onChange={handleInputChange} />
+                          {error6 && <div className="text-danger">{error6}</div>}
                         </div>
                       </Col>
                       <Col xxl={3} md={3}>
@@ -294,6 +400,7 @@ const Namuna33 = () => {
                             onChange={handleInputChange}
                             rows="4" // You can adjust the number of rows as needed
                           />
+                          {error5 && <div className="text-danger">{error5}</div>}
                         </div>
                       </Col>
                     </Row>
@@ -318,7 +425,7 @@ const Namuna33 = () => {
                     </Row> */}
 
                   <div className="col-lg-12" style={{ marginTop: "20px" }}>
-                    <div className="text-start">
+                    <div className="d-flex justify-content-end flex-wrap gap-2">
                       <Button color="success" onClick={handleSubmit} style={{ marginRight: "10px" }}>
                         जतन करा
                       </Button>

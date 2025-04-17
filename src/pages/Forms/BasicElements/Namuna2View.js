@@ -4,7 +4,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { Button, Container, Row, Col, Table, Card, CardBody } from "reactstrap";
 import BreadCrumb from "../../../Components/Common/BreadCrumb";
 
-const View33 = () => {
+const Namuna2View = () => { 
   const { state } = useLocation(); // Access the passed record data from the previous page
   const navigate = useNavigate();
   const [record, setRecord] = useState(state || {});
@@ -27,7 +27,7 @@ const View33 = () => {
             return;
           }
           const response = await axios.post(
-            `http://localhost:8080/Namuna33VrukshNondViha/get_by_id/${record.id}`,
+            `localhost:8080/Namuna02PunarniyojanVaNiyatVatap/get_by_id/${record.id}`,
             {}, // Request body (empty in this case)
             {
               headers: {
@@ -46,11 +46,11 @@ const View33 = () => {
     }
   }, [state, record.id]); // Dependency array
   const breadcrumbTitle = "डेटा पहा"; // This could be dynamic
-  const breadcrumbPageTitle = "डॅशबोर्ड / अहवाल-३३ "; // Dynamic page title
+  const breadcrumbPageTitle = "डॅशबोर्ड / नमुना २ - अहवाल "; // Dynamic page title
 
   const breadcrumbPaths = [
     "/dashboard", // Path for "डॅशबोर्ड"
-    "/नमुना-३३-अहवाल",
+    "/नमुना-२-अहवाल",
   ];
   return (
     <React.Fragment>
@@ -86,30 +86,55 @@ const View33 = () => {
                   </Row>
                   <Table bordered responsive className="table-custom">
                     <tbody>
-                      <tr>
-                        <th>नाव</th>
-                        <td>{record.naav}</td>
-                      </tr>
-                      <tr>
-                        <th>वृक्ष क्रमांक Cते C</th>
-                        <td>{record.vrukshkrmank}</td>
-                      </tr>
-                      <tr>
-                        <th>वृक्ष प्रकार</th>
-                        <td>{record.vrukshprakar}</td>
-                      </tr>
-                      <tr>
-                        <th>वृक्ष जोपासनेधी जबाबदारी</th>
-                        <td>{record.vrukshjopasnechijababdari}</td>
-                      </tr>
-                      <tr>
-                        <th>दिनांक</th>
-                        <td>{record.date}</td>
-                      </tr>
-                      <tr>
+                    <tr>
+                        <th>जमा रकमेचे मुख्य शिर्षक</th>
+                        <td>{record.jamaRakmecheMukhyaShirshak}</td>
+                    </tr>
+                    <tr>
+                        <th>मंजूर अर्थसंकल्प</th>
+                        <td>{record.manjurArthsankalp}</td>
+                    </tr>
+                    <tr>
+                        <th>सुधारित अंदाज</th>
+                        <td>{record.sudharitAndaz}</td>
+                    </tr>
+                    <tr>
+                        <th>सुधारित अधिक(+) किंवा वजा(-)</th>
+                        <td>{record.sudharitAdhikVaja}</td> 
+                    </tr>
+                    <tr>
+                        <th>खर्चाचे प्रमुख शिर्षक</th>
+                        <td>{record.kharchachePramukhShirsh}</td> 
+                    </tr>
+                        <tr>
+                        <th>मंजूर रक्कम</th>
+                        <td>{record.manjurRakkam}</td>
+                        </tr>
+                        <tr>
+                        <th>खर्चाचा सुधारित अंदाज</th>
+                        <td>{record.kharchachaSudharitAndaz}</td>
+                        </tr>
+                        <tr>
+                        <th>खर्चाचा अधिक(+) किंवा वजा(-)</th>
+                        <td>{record.kharchachaAdhikVaja}</td>
+                        </tr>
+                        <tr>
                         <th>शेरा</th>
                         <td>{record.shera}</td>
-                      </tr>
+                        </tr>
+                        <tr>
+                        <th>ज्ञापन रुपये</th>
+                        <td>{record.dnyapanRupees}</td>
+                        </tr>
+                        <tr>
+                        <th>महिना</th>
+                        <td>{record.month}</td>
+                        </tr>
+                        <tr>
+                        <th>वर्ष</th>
+                        <td>{record.year}</td>
+                        </tr>
+
                     </tbody>
                   </Table>
                 </CardBody>
@@ -122,4 +147,4 @@ const View33 = () => {
   );
 };
 
-export default View33;
+export default Namuna2View;

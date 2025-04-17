@@ -199,4 +199,4 @@ const Namuna13View = () => {
   );
 };
 
-export default Namuna13View;
+export default Namuna13View; 

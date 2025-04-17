@@ -4,7 +4,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { Button, Container, Row, Col, Table, Card, CardBody } from "reactstrap";
 import BreadCrumb from "../../../Components/Common/BreadCrumb";
 
-const View23 = () => {
+const Namuna23View = () => { 
   const { state } = useLocation(); // Access the passed record data from the previous page
   const navigate = useNavigate();
   const [record, setRecord] = useState(state || {});
@@ -56,11 +56,18 @@ const View23 = () => {
     <React.Fragment>
       <style>
         {`
-                    .page-title-right {
-                        margin-left: 82%;
-                    }
-                `}
-                
+          .page-title-right {
+            display: flex;
+            justify-content: flex-end;
+            width: 100%;
+          }
+
+          @media (max-width: 768px) {
+            .page-title-right {
+              justify-content: center; /* Center align on smaller screens */
+            }
+          }
+        `}
       </style>
       <div className="page-content">
         <Container fluid>
@@ -155,4 +162,4 @@ const View23 = () => {
   );
 };
 
-export default View23;
+export default Namuna23View;

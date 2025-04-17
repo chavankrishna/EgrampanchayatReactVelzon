@@ -267,9 +267,9 @@ import Report26kha from "../pages/Forms/BasicElements/Report26Kha";
 import View26kha from "../pages/Forms/BasicElements/View26Kha";
 import Update26Kha from "../pages/Forms/BasicElements/Update26Kha";
 import Namuna23 from "../pages/Forms/BasicElements/Namuna23";
-import Report23 from "../pages/Forms/BasicElements/Report23";
-import View23 from "../pages/Forms/BasicElements/View23";
-import Update23 from "../pages/Forms/BasicElements/Update23";
+//import Report23 from "../pages/Forms/BasicElements/Report23";
+import View23 from "../pages/Forms/BasicElements/Namuna23View";
+import Update23 from "../pages/Forms/BasicElements/Namuna23Update";
 import Namuna27 from "../pages/Forms/BasicElements/Namuna27";
 import Namuna33 from "../pages/Forms/BasicElements/Namuna33";
 import Namuna30 from "../pages/Forms/BasicElements/Namuna30";
@@ -332,7 +332,7 @@ import Namuna20View from "../pages/Forms/BasicElements/Namuna20View";
 import Print33 from "../pages/Forms/BasicElements/Print33";
 import Print32 from "../pages/Forms/BasicElements/Print32";
 import Namuna25 from "../pages/Forms/BasicElements/Namuna25";
-import Report25 from "../pages/Forms/BasicElements/Report25";
+import Report25 from "../pages/Forms/BasicElements/Namuna23Report";
 import View25 from "../pages/Forms/BasicElements/View25";
 import Update25 from "../pages/Forms/BasicElements/Update25";
 import Form from "../pages/Forms/BasicElements/Form ";
@@ -371,6 +371,9 @@ import Namuna11Report from "../pages/Forms/BasicElements/Namuna11Report";
 import Namuna13Report from "../pages/Forms/BasicElements/Namuna13Report";
 import Namuna13View from "../pages/Forms/BasicElements/Namuna13View";
 import Namuna13Update from "../pages/Forms/BasicElements/Namuna13Update";
+import Namuna23Report from "../pages/Forms/BasicElements/Namuna23Report";
+import Namuna23View from "../pages/Forms/BasicElements/Namuna23View";
+import Namuna23Update from "../pages/Forms/BasicElements/Namuna23Update";
 
 
 
@@ -474,9 +477,9 @@ const authProtectedRoutes = [
   //Vishal
   //namuna23
   { path: "/नमुना-२३", component: <Namuna23 /> },
-  { path: "/नमुना-२३-अहवाल", component: <Report23 /> }, 
-  { path: "/नमुना-२३-पाहणी-पृष्ठ", component: <View23 /> },
-  { path: "/नमुना-२३-अपडेट", component: <Update23 /> },
+  { path: "/नमुना-२३-अहवाल", component: <Namuna23Report /> }, 
+  { path: "/नमुना-२३-पाहणी-पृष्ठ", component: <Namuna23View /> },
+  { path: "/नमुना-२३-अपडेट", component: <Namuna23Update /> },
   
   
   //namuna30

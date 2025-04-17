@@ -7,7 +7,7 @@ import BreadCrumb from "../../../Components/Common/BreadCrumb";
 import "../BasicElements/style.css";
 import DatePicker from "react-datepicker"; // Import the date picker
 import "react-datepicker/dist/react-datepicker.css"; // Import datepicker styles
-import { setSessionMessage, getSessionMessage } from "../BasicElements/finalconfig";
+import { setSessionMessage, getSessionMessage } from "./finalconfig";
 
 const arabicToMarathiDigits = (num) => {
   const marathiDigits = ["०", "१", "२", "३", "४", "५", "६", "७", "८", "९"];
@@ -26,7 +26,7 @@ const yearRanges = Array.from({ length: 100 }, (_, i) => {
   return `${startYearInMarathi} -${endYearInMarathi}`;
 });
 
-const Update23 = () => {
+const Namuna23Update = () => {
   const { state } = useLocation();
   const navigate = useNavigate();
 
@@ -195,11 +195,18 @@ const Update23 = () => {
     <React.Fragment>
       <style>
         {`
-                    .page-title-right {
-                        margin-left: 68%;
-                    }
-                `}
-                
+          .page-title-right {
+            display: flex;
+            justify-content: flex-end;
+            width: 100%;
+          }
+
+          @media (max-width: 768px) {
+            .page-title-right {
+              justify-content: center; /* Center align on smaller screens */
+            }
+          }
+        `}
       </style>
       <UiContent />
       <div className="page-content">
@@ -219,7 +226,7 @@ const Update23 = () => {
                       </div>
                       <div>
                         <Button color="primary" onClick={() => navigate(-1)}>
-                          <i className="bx bx-arrow-back"></i>मागे जा
+                          मागे जा
                         </Button>
                       </div>
                     </Col>
@@ -349,23 +356,8 @@ const Update23 = () => {
                         <Input type="text" className="form-control" id="durustyaMulBandhkamSwarup" value={formData.durustyaMulBandhkamSwarup} onChange={handleInputChange} />
                       </div>
                     </Col>
-
                     <Col xxl={3} md={3}>
-                      <div>
-                        <Label htmlFor="shera" className="form-label">
-                          शेरा
-                        </Label>
-                        <textarea
-                          className="form-control"
-                          id="shera"
-                          value={formData.shera}
-                          onChange={handleInputChange}
-                          rows="4" // You can adjust the number of rows as needed
-                        />
-                      </div>
-                    </Col>
-                    <Col xxl={3} md={3}>
-                      <div>
+                    <div>
                         <Label htmlFor="year" className="form-label">
                           वर्ष
                         </Label>
@@ -378,19 +370,23 @@ const Update23 = () => {
                           ))}
                         </Input>
                       </div>
-                    </Col>
-                    {/* <Col sm={12}>
-                      <Button color="success" onClick={handleSubmit}>
-                        अद्यतन करा
-                      </Button>
-                      <Button color="primary" onClick={handleReset} style={{ marginLeft: "10px" }}>
-                        रिसेट करा
-                      </Button>
-                      <Button color="danger" onClick={() => navigate("/नमुना-२३-अहवाल")} style={{ marginLeft: "10px" }}>
-                        रद्द करा
-                      </Button>
-                    </Col> */}
+                      </Col>
+                     <Col xxl={3} md={3}>
+                          <div>
+                             <Label htmlFor="shera" className="form-label">
+                                 शेरा
+                                </Label>
+                                <textarea
+                                 className="form-control"
+                                 id="shera"
+                                 value={formData.shera}
+                                 onChange={handleInputChange}
+                                 rows="2" // You can adjust the number of rows as needed
+                                  />
+                                 </div>
+                     </Col>
                   </Row>
+                  <br></br>
                   <ModalFooter>
                     <Button color="success" type="submit" disabled={loading} style={{ marginRight: "2%" }} onClick={handleSubmit}>
                       {loading ? "अद्यतन करा..." : "अद्यतन करा"}
@@ -409,4 +405,4 @@ const Update23 = () => {
   );
 };
 
-export default Update23;
+export default  Namuna23Update;
